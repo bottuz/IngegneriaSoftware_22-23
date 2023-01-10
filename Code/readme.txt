@@ -1,0 +1,3 @@
+-il file LOGIN è il file che contiene il main da eseguire,
+-la cartella lib contiene il driver JDBC che consente di interagire con il db,
+-il progetto per ora, svolge solo alcune funzioni, le altre bisogna implementarle.
