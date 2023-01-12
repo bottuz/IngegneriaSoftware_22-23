@@ -5756,30 +5756,13 @@
 											"height": 13,
 											"text": "+tipo_accidente: String",
 											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGFlgWx4XeykTw=",
-											"_parent": {
-												"$ref": "AAAAAAGFlgAZLHYovaI="
-											},
-											"model": {
-												"$ref": "AAAAAAGFlgWx3nep1XM="
-											},
-											"font": "Arial;13;0",
-											"left": 805,
-											"top": 772,
-											"width": 178.876953125,
-											"height": 13,
-											"text": "+tessera_accidentata: Boolean",
-											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 800,
 									"top": 737,
 									"width": 188.876953125,
-									"height": 53
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -5802,7 +5785,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 805,
-											"top": 795,
+											"top": 780,
 											"width": 178.876953125,
 											"height": 13,
 											"text": "+richiedi_n_carta()",
@@ -5819,7 +5802,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 805,
-											"top": 810,
+											"top": 795,
 											"width": 178.876953125,
 											"height": 13,
 											"text": "+controlla_carta()",
@@ -5836,7 +5819,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 805,
-											"top": 825,
+											"top": 810,
 											"width": 178.876953125,
 											"height": 13,
 											"text": "+approva_carta()",
@@ -5853,7 +5836,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 805,
-											"top": 840,
+											"top": 825,
 											"width": 178.876953125,
 											"height": 13,
 											"text": "+sequestra_carta()",
@@ -5862,7 +5845,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 800,
-									"top": 790,
+									"top": 775,
 									"width": 188.876953125,
 									"height": 68
 								},
@@ -8792,15 +8775,6 @@
 							},
 							"name": "tipo_accidente",
 							"type": "String"
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGFlgWx3nep1XM=",
-							"_parent": {
-								"$ref": "AAAAAAGFlgAZLHYgOTw="
-							},
-							"name": "tessera_accidentata",
-							"type": "Boolean"
 						}
 					],
 					"operations": [
