@@ -14,11 +14,12 @@ Abbiamo anche introdotto un glossario e descritto il progetto.
 
 ### UML
 Abbiamo realizzato i vari diagrammi grazie a STARUML.
-- [CASI D'USO]()
-- [ATTIVITÀ]()
-- [CLASSI](Documentazione/Diagrammi/Diagramma classi.jpg)
-- [PACKAGE](Documentazione/Diagrammi/Diagramma Package.jpg)
-- [SEQUENZE](Documentazione/Diagrammi/Diagramma delle sequenze.jpg)
+Sono nella cartella [Documentazione/Diagrammi](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/tree/main/Documentazione/Diagrammi)
+- [CASI D'USO]
+- [ATTIVITÀ]
+- [CLASSI]
+- [PACKAGE]
+- [SEQUENZE]
 
 ### JavaDoc
 
