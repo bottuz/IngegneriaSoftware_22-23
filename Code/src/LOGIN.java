@@ -59,11 +59,11 @@ public class LOGIN {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Username");
+		JLabel lblNewLabel = new JLabel("NCarta");
 		lblNewLabel.setBounds(72, 72, 73, 15);
 		frame.getContentPane().add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Password");
+		JLabel lblNewLabel_1 = new JLabel("PIN");
 		lblNewLabel_1.setBounds(72, 118, 73, 15);
 		frame.getContentPane().add(lblNewLabel_1);
 
@@ -83,20 +83,23 @@ public class LOGIN {
 		btnNewButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-				lblNewLabel.setText("");
-				lblNewLabel_1.setText("");
 				try {
-					String username = textField.getText();
-					String password = new String(passwordField.getPassword());
-					String sql = "SELECT * FROM users WHERE username='" + username + "' AND password='" + password
+					String ncarta = textField.getText();
+					String pin = new String(passwordField.getPassword());
+					String sql = "SELECT * FROM utente WHERE n_carta='" + ncarta + "' AND PIN='" + pin
 							+ "'";
 					resultSet = statement.executeQuery(sql);
 					if (resultSet.next()) {
+						//refresh textbox
+						textField.setText("");
+						passwordField.setText("");
 						// Apri la schermata principale dell'ATM e chiudi la finestra di login
 						frame.hide();
 						createATM();
 					} else {
 						JOptionPane.showMessageDialog(null, "Username o password errati");
+						textField.setText("");
+						passwordField.setText("");
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -109,7 +112,7 @@ public class LOGIN {
 	private void createConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/atm", "admin", "admin");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -147,7 +150,6 @@ public class LOGIN {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.show();
 				atmFrame.dispose();
-
 			}
 		});
 
