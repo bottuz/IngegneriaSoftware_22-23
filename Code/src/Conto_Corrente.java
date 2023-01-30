@@ -1,19 +1,81 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 public class Conto_Corrente {
 	private int n_conto;
 	private Boolean importo_minimo;
+	private Double bilancio;
 
-	public Conto_Corrente() {
-		n_conto = 0;
-		importo_minimo = false;
+//////////////////////////////////////////////////////////////////////////////
+//								COSTRUTTORI									//
+//////////////////////////////////////////////////////////////////////////////	
+	
+	// costruttore esistente sul db
+	public Conto_Corrente(int n_conto) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM conto_corrente where n_conto ='" + n_conto + "'");
+			if (rs.next()) {
+				n_conto = rs.getInt("n_conto");
+				importo_minimo = rs.getBoolean("importo_minimo");
+				setBilancio(rs.getDouble("bilancio"));
+			}
+			con.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
 	}
 
+	// costruttore nuovo conto corrente
+	public Conto_Corrente() {
+		// genero N_conto per utente di 5 int
+		Random rand = new Random();
+		for (int i = 0; i < 5; i++) {
+			n_conto = rand.nextInt(999999);
+		}
+		importo_minimo = false;
+		bilancio = 0.0;
+		// carico nel DB
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"INSERT into conto_corrente VALUES('" + n_conto + "','" + importo_minimo + "','" + bilancio + "')");
+			if (rs.next()) {
+				JOptionPane.showMessageDialog(null, "CONTO CORRENTE CREATO CORRETTAMENTE!");
+			}
+			con.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+	}
+
+//////////////////////////////////////////////////////////////////////////////
+//									GET/SET									//
+//////////////////////////////////////////////////////////////////////////////
+	
 	public int getN_conto() {
 		return n_conto;
 	}
 
 	public Boolean getImporto_minimo() {
 		return importo_minimo;
+	}
+
+	public Double getBilancio() {
+		return bilancio;
+	}
+
+	public void setBilancio(Double bilancio) {
+		this.bilancio = bilancio;
 	}
 
 	public void setN_conto(int n_conto) {
@@ -24,6 +86,10 @@ public class Conto_Corrente {
 		this.importo_minimo = importo_minimo;
 	}
 
+//////////////////////////////////////////////////////////////////////////////
+//								FUNZIONI									//
+//////////////////////////////////////////////////////////////////////////////
+	
 	public void controlla_conto() {
 		// da implementare
 	}

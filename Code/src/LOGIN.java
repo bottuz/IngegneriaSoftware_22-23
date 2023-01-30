@@ -1,6 +1,10 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -16,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class LOGIN {
 
@@ -25,6 +30,8 @@ public class LOGIN {
 	private static Connection connection;
 	private static Statement statement;
 	private static ResultSet resultSet;
+
+	private Utente utente;
 
 	/**
 	 * Launch the application.
@@ -86,16 +93,17 @@ public class LOGIN {
 				try {
 					String ncarta = textField.getText();
 					String pin = new String(passwordField.getPassword());
-					String sql = "SELECT * FROM utente WHERE n_carta='" + ncarta + "' AND PIN='" + pin
-							+ "'";
+					String sql = "SELECT * FROM utente WHERE n_carta='" + ncarta + "' AND PIN='" + pin + "'";
 					resultSet = statement.executeQuery(sql);
 					if (resultSet.next()) {
-						//refresh textbox
+						// creo utente
+						utente = new Utente(Integer.parseInt(ncarta));
+						// refresh textbox
 						textField.setText("");
 						passwordField.setText("");
 						// Apri la schermata principale dell'ATM e chiudi la finestra di login
 						frame.hide();
-						createATM();
+						createATM(utente);
 					} else {
 						JOptionPane.showMessageDialog(null, "Username o password errati");
 						textField.setText("");
@@ -119,11 +127,18 @@ public class LOGIN {
 		}
 	}
 
-	private void createATM() {
+	private void createATM(Utente utente) {
 		// crea la finestra dell'ATM
 		JFrame atmFrame = new JFrame("ATM");
 		atmFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		atmFrame.setSize(400, 400);
+
+		// saluto e saldo dell'utente
+		JPanel cognomeSaldo = new JPanel();
+		JLabel label = new JLabel("UTENTE: " + utente.getCognome() + " SALDO:" + utente.getCc().getBilancio(),
+				SwingConstants.CENTER);
+		cognomeSaldo.add(label);
+
 		// crea il pannello delle opzioni
 		JPanel optionsPanel = new JPanel();
 		optionsPanel.setLayout(new GridLayout(4, 2));
@@ -156,6 +171,7 @@ public class LOGIN {
 		// aggiunge i pannelli alla finestra
 		// atmFrame.add(loginPanel, BorderLayout.NORTH);
 		atmFrame.add(optionsPanel, BorderLayout.SOUTH);
+		atmFrame.add(cognomeSaldo, BorderLayout.NORTH);
 
 		// mostra la finestra
 		atmFrame.setVisible(true);

@@ -1,12 +1,59 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.swing.JOptionPane;
 
 public class atm {
 	private int n_serie;
 	private int n_filiale;
 	private boolean carta_ok;
+	private String luogo;
 
-	public atm() {
+//////////////////////////////////////////////////////////////////////////////
+//								COSTRUTTORI									//
+//////////////////////////////////////////////////////////////////////////////
 
+	// costruttore esistente sul db
+	public atm(String luogo) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM atm WHERE Luogo='" + luogo + "'");
+			if (rs.next()) {
+				n_serie = rs.getInt("n_serie");
+				n_filiale = rs.getInt("n_filiale");
+				carta_ok = rs.getBoolean("carta_ok");
+				setLuogo(rs.getString("Luogo"));
+			}
+			con.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
 	}
+
+	// costruttore nuovo atm
+	public atm(int n_serie, int n_filiale, Boolean carta_ok, String luogo) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"INSERT INTO atm VALUES('" + n_serie + "','" + n_filiale + "','" + carta_ok + "','" + luogo + "')");
+			if (rs.next()) {
+				JOptionPane.showMessageDialog(null, "ATM CREATO CON SUCCESSO!");
+			}
+			con.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+	}
+
+//////////////////////////////////////////////////////////////////////////////
+//									GET/SET									//
+//////////////////////////////////////////////////////////////////////////////
 
 	public int getN_serie() {
 		return n_serie;
@@ -24,6 +71,14 @@ public class atm {
 		this.n_filiale = n_filiale;
 	}
 
+	public String getLuogo() {
+		return luogo;
+	}
+
+	public void setLuogo(String luogo) {
+		this.luogo = luogo;
+	}
+
 	public boolean isCarta_ok() {
 		return carta_ok;
 	}
@@ -31,6 +86,10 @@ public class atm {
 	public void setCarta_ok(boolean carta_ok) {
 		this.carta_ok = carta_ok;
 	}
+
+//////////////////////////////////////////////////////////////////////////////
+//								FUNZIONI									//
+//////////////////////////////////////////////////////////////////////////////
 
 	public void richiedi_carta() {
 		// prompt user to insert card
