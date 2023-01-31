@@ -12,9 +12,9 @@ public class database_accidenti {
 //////////////////////////////////////////////////////////////////////////////
 //								COSTRUTTORI									//
 //////////////////////////////////////////////////////////////////////////////
-	
+
 	// costruttore esistente sul db
-	public database_accidenti(String tesserasospetta) {
+	public database_accidenti(int tesserasospetta) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
@@ -26,23 +26,27 @@ public class database_accidenti {
 				setTipo_accidente(rs.getString("tipo_accidente"));
 			}
 			con.close();
+			rs.close();
+			stmt.close();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
 	}
 
 	// costruttore nuova tessera accidentata
-	public database_accidenti(int n_carta, String tipo_accidente) {
+	public database_accidenti(String n_carta, String tipo_accidente) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt
-					.executeQuery("INSERT INTO database_accidenti VALUES('" + n_carta + "','" + tipo_accidente + "')");
+					.executeQuery("INSERT INTO database_accidenti VALUES('" + Integer.parseInt(n_carta) + "','" + tipo_accidente + "')");
 			if (rs.next()) {
 				JOptionPane.showMessageDialog(null, "CARTA AGGIUNTA CORRETTAMENTE NELLA BLACK LIST!");
 			}
 			con.close();
+			rs.close();
+			stmt.close();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
@@ -51,7 +55,7 @@ public class database_accidenti {
 //////////////////////////////////////////////////////////////////////////////
 //									GET/SET									//
 //////////////////////////////////////////////////////////////////////////////
-	
+
 	// getters
 	public int getN_carta() {
 		return n_carta;
@@ -69,9 +73,17 @@ public class database_accidenti {
 	public void setTipo_accidente(String tipo_accidente) {
 		this.tipo_accidente = tipo_accidente;
 	}
-	
+
 //////////////////////////////////////////////////////////////////////////////
 //								FUNZIONI									//
 //////////////////////////////////////////////////////////////////////////////
-	
+
+	public boolean cartaaccidentata(int n_carta) {
+		database_accidenti db = new database_accidenti(n_carta);
+		if (db.tipo_accidente != null) {
+			return true; // ritorna true se accidentata
+		} else {
+			return false; // ritorna false se tessera valida
+		}
+	}
 }

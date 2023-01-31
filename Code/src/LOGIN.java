@@ -1,10 +1,6 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -32,6 +28,10 @@ public class LOGIN {
 	private static ResultSet resultSet;
 
 	private Utente utente;
+	private database_accidenti db;
+	@SuppressWarnings("unused")
+	private database_accidenti dbaccidentata;
+	private int counter = 3;
 
 	/**
 	 * Launch the application.
@@ -95,7 +95,16 @@ public class LOGIN {
 					String pin = new String(passwordField.getPassword());
 					String sql = "SELECT * FROM utente WHERE n_carta='" + ncarta + "' AND PIN='" + pin + "'";
 					resultSet = statement.executeQuery(sql);
-					if (resultSet.next()) {
+
+					// controllo se la tessera è rubata
+					db = new database_accidenti(Integer.parseInt(ncarta));
+					if (db.cartaaccidentata(Integer.parseInt(ncarta))) {
+						JOptionPane.showMessageDialog(null, "TESSERA RITIRATA! " + db.getTipo_accidente());
+						textField.setText("");
+						passwordField.setText("");
+						System.exit(0);
+					}
+					if (resultSet.next() && !db.cartaaccidentata(Integer.parseInt(ncarta))) {
 						// creo utente
 						utente = new Utente(Integer.parseInt(ncarta));
 						// refresh textbox
@@ -104,9 +113,18 @@ public class LOGIN {
 						// Apri la schermata principale dell'ATM e chiudi la finestra di login
 						frame.hide();
 						createATM(utente);
+						resultSet.close();
+						connection.close();
+						statement.close();
 					} else {
-						JOptionPane.showMessageDialog(null, "Username o password errati");
-						textField.setText("");
+						counter--;
+						if (counter == 0) {
+							dbaccidentata = new database_accidenti(ncarta, "PIN errato"); /// non aggiunge la carta al
+																							/// db
+							JOptionPane.showMessageDialog(null, "TESSERA BLOCCATA! HAI SBAGLIATO PIN 3 VOLTE!!");
+							System.exit(0);
+						}
+						JOptionPane.showMessageDialog(null, "Username o password errati" + counter);
 						passwordField.setText("");
 					}
 				} catch (SQLException e) {
@@ -127,6 +145,17 @@ public class LOGIN {
 		}
 	}
 
+//	// chiude connessione al DB
+//	private void closeConnection() {
+//		try {
+//			connection.close();
+//			statement.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
+
 	private void createATM(Utente utente) {
 		// crea la finestra dell'ATM
 		JFrame atmFrame = new JFrame("ATM");
@@ -135,8 +164,7 @@ public class LOGIN {
 
 		// saluto e saldo dell'utente
 		JPanel cognomeSaldo = new JPanel();
-		JLabel label = new JLabel("UTENTE: " + utente.getCognome() + " SALDO:" + utente.getCc().getBilancio(),
-				SwingConstants.CENTER);
+		JLabel label = new JLabel("UTENTE: " + utente.getCognome(), SwingConstants.CENTER);
 		cognomeSaldo.add(label);
 
 		// crea il pannello delle opzioni
@@ -159,12 +187,44 @@ public class LOGIN {
 		optionsPanel.add(closeAccButton);
 		optionsPanel.add(logoutButton);
 
-		// azioni
+		// azione exit
 		logoutButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				frame.show();
 				atmFrame.dispose();
+			}
+		});
+
+		// azione verifica saldo
+		balanceButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "IL TUO SALDO CONTABILE: " + utente.getCc().getBilancio());
+			}
+		});
+
+		// azione preleva contante
+		withdrawButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int qtaprelievo = Integer.parseInt(JOptionPane.showInputDialog("Quanto vuoi prelevare?"));
+
+				// se carta di credito = no limite prelievo!
+				if (!utente.getCc().getImporto_minimo()) {
+					utente.getCc().PrelevaContante(qtaprelievo, utente.getN_conto());
+				} else if (utente.getCc().getBilancio() > 0 && (utente.getCc().getBilancio() - qtaprelievo) > 0) {
+					utente.getCc().PrelevaContante(qtaprelievo, utente.getN_conto());
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"IL TUO SALDO CONTABILE: " + utente.getCc().getBilancio() + " NON HAI ABBASTANZA SOLDI!");
+				}
+			}
+		});
+
+		// azione deposita contante
+		depositButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int qtadeposito = Integer.parseInt(JOptionPane.showInputDialog("Quanto vuoi depositare?"));
+				utente.getCc().depositaContante(qtadeposito, utente.getN_conto());
 			}
 		});
 
