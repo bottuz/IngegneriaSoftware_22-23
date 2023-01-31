@@ -111,9 +111,9 @@ public class Conto_Corrente {
 			int rowsAffected = statement.executeUpdate();
 			if (rowsAffected > 0) {
 				bilancio -= qtaprelievo;
-				JOptionPane.showMessageDialog(null, "Hai prelevato: " + qtaprelievo + "; NUOVO SALDO: " + bilancio);
+				JOptionPane.showMessageDialog(null, "USCITE: " + qtaprelievo + "€; NUOVO SALDO: " + bilancio + "€");
 			} else {
-				JOptionPane.showMessageDialog(null, "Prelievo non riuscito. Verifica il numero del conto.");
+				JOptionPane.showMessageDialog(null, "ERRORE. Verifica il numero del Conto.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -144,9 +144,8 @@ public class Conto_Corrente {
 			int rowsAffected = statement.executeUpdate();
 			if (rowsAffected > 0) {
 				bilancio += qtadeposito;
-				JOptionPane.showMessageDialog(null, "Hai depositato: " + qtadeposito + "; NUOVO SALDO: " + bilancio);
 			} else {
-				JOptionPane.showMessageDialog(null, "Deposito non riuscito. Verifica il numero del conto.");
+				JOptionPane.showMessageDialog(null, "ERRORE. Verifica il numero del Conto.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -162,8 +161,23 @@ public class Conto_Corrente {
 		}
 	}
 
-	public void rilascia_carta() {
-		// da implementare
+	// funzione per verificare se esiste un CC cercato dal n_conto
+	public boolean esisteCC(int n_conto) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM conto_corrente where n_conto ='" + n_conto + "'");
+			if (rs.next()) {
+				return true;
+			}
+			con.close();
+			stmt.close();
+			rs.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		return false;
 	}
 
 	public void scrivi_importo_transazione() {

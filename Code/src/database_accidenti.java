@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -38,15 +39,14 @@ public class database_accidenti {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("INSERT INTO database_accidenti VALUES('" + Integer.parseInt(n_carta) + "','" + tipo_accidente + "')");
-			if (rs.next()) {
-				JOptionPane.showMessageDialog(null, "CARTA AGGIUNTA CORRETTAMENTE NELLA BLACK LIST!");
-			}
+			String query = "INSERT INTO database_accidenti (n_carta, tipo_accidente) VALUES (?,?)";
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(n_carta));
+			pstmt.setString(2, tipo_accidente);
+			@SuppressWarnings("unused")
+			int rowsInserted = pstmt.executeUpdate();
 			con.close();
-			rs.close();
-			stmt.close();
+			pstmt.close();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}

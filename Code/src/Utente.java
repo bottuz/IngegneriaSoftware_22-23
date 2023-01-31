@@ -4,7 +4,9 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Utente {
@@ -39,6 +41,30 @@ public class Utente {
 				setResidenza(rs.getString("residenza"));
 				tessera = new Tessera_Magnetica(n_carta);
 				cc = new Conto_Corrente(n_conto);
+			}
+			con.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+	}
+
+	public Utente(int n_conto, String cognome) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"SELECT * FROM utente where n_conto ='" + n_conto + "' AND cognome='" + cognome + "'");
+			if (rs.next()) {
+				setN_conto(rs.getInt("n_conto"));
+				setN_carta(rs.getInt("n_carta"));
+				setPIN(rs.getInt("PIN"));
+				setNome(rs.getString("nome"));
+				setCognome(rs.getString("cognome"));
+				setAnnoNascita(rs.getDate("anno_nascita"));
+				setResidenza(rs.getString("residenza"));
+				tessera = new Tessera_Magnetica(rs.getInt("n_carta"));
+				cc = new Conto_Corrente(rs.getInt("n_conto"));
 			}
 			con.close();
 		} catch (Exception e) {
@@ -156,16 +182,95 @@ public class Utente {
 //								FUNZIONI									//
 //////////////////////////////////////////////////////////////////////////////
 
-	public void inserisce_carta() {
-		// da implementare
+	// serve a verificare l'esistenza di un utente dal COGNOME
+	public boolean esisteUTENTE(int n_conto, String cognome) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"SELECT * FROM utente where cognome ='" + cognome + "' AND n_conto='" + n_conto + "'");
+			if (rs.next()) {
+				return true;
+			}
+			con.close();
+			stmt.close();
+			rs.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		return false;
 	}
 
-	public void inserisce_PIN() {
-		// da implementare
+	// Serve a modificare il PIN utente {5 interi}
+	public void modificaPIN(String PIN) {
+		String url = "jdbc:mysql://localhost:3306/ATM";
+		String username = "admin";
+		String password = "admin";
+		String query = "UPDATE utente SET pin = ? WHERE n_conto = ?";
+
+		try (Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stmt = conn.prepareStatement(query)) {
+			int n_conto = this.n_conto; // N_CONTO dell'utente per cui si vuole cambiare il pin
+			String newPin = PIN; // Nuovo pin
+
+			stmt.setString(1, newPin);
+			stmt.setInt(2, n_conto);
+			@SuppressWarnings("unused")
+			int rowsUpdated = stmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "PIN MODIFICATO CORRETTAMENTE");
+			setPIN(Integer.parseInt(newPin));
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
-	public void sceglie_transazione() {
-		// da implementare
+	public void cancellaUTENTE() {
+		String url = "jdbc:mysql://localhost:3306/ATM";
+		String username = "admin";
+		String password = "admin";
+		String queryconto = "DELETE FROM conto_corrente WHERE n_conto = ?";
+		String querytessera = "DELETE FROM tessera_magnetica WHERE n_carta = ?";
+		String queryutente = "DELETE FROM utente WHERE n_conto = ?";
+
+		// elimino utente
+		try (Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stmt = conn.prepareStatement(queryutente)) {
+			int n_conto = this.n_conto; // N_CONTO dell'utente che si vuole eliminare
+
+			stmt.setInt(1, n_conto);
+			@SuppressWarnings("unused")
+			int rowsUpdated = stmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "UTENTE CANCELLATO!!");
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+
+		// elimino tessera
+		try (Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stmt = conn.prepareStatement(querytessera)) {
+			int n_carta = this.n_carta; // N_CARTA della tessera che si vuole eliminare
+
+			stmt.setInt(1, n_carta);
+			@SuppressWarnings("unused")
+			int rowsUpdated = stmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "TESSERA CANCELLATA!!");
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+
+		// elimino conto
+		try (Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stmt = conn.prepareStatement(queryconto)) {
+			int n_conto = this.n_conto; // N_CONTO del CC che si vuole eliminare
+
+			stmt.setInt(1, n_conto);
+			@SuppressWarnings("unused")
+			int rowsUpdated = stmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "CONTO CORRENTE CANCELLATO!!");
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	public void richiede_ricevuta() {

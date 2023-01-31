@@ -8,7 +8,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,6 +31,8 @@ public class LOGIN {
 	@SuppressWarnings("unused")
 	private database_accidenti dbaccidentata;
 	private int counter = 3;
+	private atm atm;
+	private Utente ubeneficiario;
 
 	/**
 	 * Launch the application.
@@ -61,11 +62,17 @@ public class LOGIN {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		// usiamo filiale di bergamo
+		atm = new atm("bergamo");
+
+		// creazione frame + titolo dinamico
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("BANCA D'ITALIA-" + atm.getLuogo());
 
+		// creiamo label per login
 		JLabel lblNewLabel = new JLabel("NCarta");
 		lblNewLabel.setBounds(72, 72, 73, 15);
 		frame.getContentPane().add(lblNewLabel);
@@ -83,10 +90,12 @@ public class LOGIN {
 		passwordField.setBounds(169, 116, 114, 19);
 		frame.getContentPane().add(passwordField);
 
+		// bottone accedi
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBounds(169, 164, 117, 25);
 		frame.getContentPane().add(btnNewButton);
 
+		// azione bottone LOGIN
 		btnNewButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
@@ -99,10 +108,9 @@ public class LOGIN {
 					// controllo se la tessera è rubata
 					db = new database_accidenti(Integer.parseInt(ncarta));
 					if (db.cartaaccidentata(Integer.parseInt(ncarta))) {
-						JOptionPane.showMessageDialog(null, "TESSERA RITIRATA! " + db.getTipo_accidente());
+						JOptionPane.showMessageDialog(null, "TESSERA RITIRATA PER " + db.getTipo_accidente());
 						textField.setText("");
 						passwordField.setText("");
-						System.exit(0);
 					}
 					if (resultSet.next() && !db.cartaaccidentata(Integer.parseInt(ncarta))) {
 						// creo utente
@@ -119,12 +127,11 @@ public class LOGIN {
 					} else {
 						counter--;
 						if (counter == 0) {
-							dbaccidentata = new database_accidenti(ncarta, "PIN errato"); /// non aggiunge la carta al
-																							/// db
+							dbaccidentata = new database_accidenti(ncarta, "PIN errato");
 							JOptionPane.showMessageDialog(null, "TESSERA BLOCCATA! HAI SBAGLIATO PIN 3 VOLTE!!");
-							System.exit(0);
 						}
-						JOptionPane.showMessageDialog(null, "Username o password errati" + counter);
+						JOptionPane.showMessageDialog(null,
+								"Username o password errati; Ancora " + counter + " tentativi rimasti");
 						passwordField.setText("");
 					}
 				} catch (SQLException e) {
@@ -145,17 +152,6 @@ public class LOGIN {
 		}
 	}
 
-//	// chiude connessione al DB
-//	private void closeConnection() {
-//		try {
-//			connection.close();
-//			statement.close();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//
-//	}
-
 	private void createATM(Utente utente) {
 		// crea la finestra dell'ATM
 		JFrame atmFrame = new JFrame("ATM");
@@ -164,7 +160,7 @@ public class LOGIN {
 
 		// saluto e saldo dell'utente
 		JPanel cognomeSaldo = new JPanel();
-		JLabel label = new JLabel("UTENTE: " + utente.getCognome(), SwingConstants.CENTER);
+		JLabel label = new JLabel("UTENTE: " + utente.getNome() + " " + utente.getCognome(), SwingConstants.CENTER);
 		cognomeSaldo.add(label);
 
 		// crea il pannello delle opzioni
@@ -174,8 +170,8 @@ public class LOGIN {
 		JButton withdrawButton = new JButton("Preleva Contante");
 		JButton depositButton = new JButton("Deposita Contante");
 		JButton transfertButton = new JButton("Trasferisci Saldo");
-		JButton viewTransButton = new JButton("Visualizza transazioni recenti");
-		JButton changeButton = new JButton("Cambia password");
+		JButton viewTransButton = new JButton("Visualizza storico");
+		JButton changeButton = new JButton("Cambia PIN");
 		JButton closeAccButton = new JButton("Chiudi conto");
 		JButton logoutButton = new JButton("Esci");
 		optionsPanel.add(balanceButton);
@@ -187,7 +183,7 @@ public class LOGIN {
 		optionsPanel.add(closeAccButton);
 		optionsPanel.add(logoutButton);
 
-		// azione exit
+		// azione EXIT
 		logoutButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
@@ -196,14 +192,34 @@ public class LOGIN {
 			}
 		});
 
-		// azione verifica saldo
+		// azione CAMBIO PIN
+		changeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String initialPin = JOptionPane.showInputDialog(null, "Inserisci il nuovo pin (5 cifre):");
+				String confirmedPin = JOptionPane.showInputDialog(null, "Conferma il nuovo pin:");
+				if (initialPin.equals(confirmedPin) && initialPin.length() == 5) {
+					utente.modificaPIN(initialPin);
+				} else {
+					System.out.println("Pin ERRATO. Riprova.");
+				}
+			}
+		});
+
+		// azione CANCELLA UTENTE
+		closeAccButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				utente.cancellaUTENTE();
+			}
+		});
+
+		// azione VERIFICA SALDO
 		balanceButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, "IL TUO SALDO CONTABILE: " + utente.getCc().getBilancio());
 			}
 		});
 
-		// azione preleva contante
+		// azione PRELEVA CONTANTE
 		withdrawButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int qtaprelievo = Integer.parseInt(JOptionPane.showInputDialog("Quanto vuoi prelevare?"));
@@ -220,11 +236,44 @@ public class LOGIN {
 			}
 		});
 
-		// azione deposita contante
+		// azione DEPOSITA CONTANTE
 		depositButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int qtadeposito = Integer.parseInt(JOptionPane.showInputDialog("Quanto vuoi depositare?"));
 				utente.getCc().depositaContante(qtadeposito, utente.getN_conto());
+				JOptionPane.showMessageDialog(null,
+						"ENTRATA: " + qtadeposito + "€; NUOVO SALDO: " + utente.getCc().getBilancio() + "€");
+
+			}
+		});
+
+		// azione trasferisci contante
+		transfertButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// qta - n_conto - cognome beneficiario
+				int qtatrasferita = Integer.parseInt(JOptionPane.showInputDialog("Quanto vuoi trasferire?"));
+				int beneficiario = Integer
+						.parseInt(JOptionPane.showInputDialog("Inserire Numero di CONTO del beneficiario: "));
+				String cognomeBeneficiario = JOptionPane.showInputDialog("Inserire il Cognome del beneficiario: ");
+
+				// creo oggetto beneficiario
+				if (utente.esisteUTENTE(beneficiario, cognomeBeneficiario)) {
+					ubeneficiario = new Utente(beneficiario, cognomeBeneficiario);
+					// se carta di credito = no limite prelievo!
+					if (!utente.getCc().getImporto_minimo()) {
+						utente.getCc().PrelevaContante(qtatrasferita, utente.getN_conto());
+						ubeneficiario.getCc().depositaContante(qtatrasferita, ubeneficiario.getN_conto());
+					} else if (utente.getCc().getBilancio() > 0 && (utente.getCc().getBilancio() - qtatrasferita) > 0) {
+						utente.getCc().PrelevaContante(qtatrasferita, utente.getN_conto());
+						ubeneficiario.getCc().depositaContante(qtatrasferita, ubeneficiario.getN_conto());
+					} else {
+						JOptionPane.showMessageDialog(null, "IL TUO SALDO CONTABILE: " + utente.getCc().getBilancio()
+								+ " NON HAI ABBASTANZA SOLDI!");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "INSERIRE UN NUMERO DI CONTO/COGNOME CORRETTO!");
+				}
+
 			}
 		});
 

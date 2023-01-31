@@ -107,6 +107,25 @@ public class Tessera_Magnetica {
 //								FUNZIONI									//
 //////////////////////////////////////////////////////////////////////////////
 
+	// funzione per verificare se esiste una TESSERA cercato dal n_carta
+	public boolean esisteTESSERA(int n_carta) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM conto_corrente where n_carta ='" + n_carta + "'");
+			if (rs.next()) {
+				return true;
+			}
+			con.close();
+			stmt.close();
+			rs.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		return false;
+	}
+
 	public void invia_n_carta() {
 		// da implementare
 	}
