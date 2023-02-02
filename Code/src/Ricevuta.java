@@ -1,8 +1,5 @@
 import java.sql.Time;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -149,42 +146,6 @@ public class Ricevuta {
 //////////////////////////////////////////////////////////////////////////////
 
 	// funzioni
-	public ArrayList<Transazione> storico(int n_carta) {
-		ArrayList<Transazione> transactions = new ArrayList<Transazione>();
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM transazione where n_carta ='" + n_carta + "'");
-
-			while (rs.next()) {
-				int n_serie = rs.getInt("n_serie");
-				String tipo_transazione = rs.getString("tipo_transazione");
-				Time ora_transazione = rs.getTime("ora_transazione");
-				int n_ATM = rs.getInt("n_atm");
-				int n_filiale = rs.getInt("n_filiale");
-				Double importo_prelievo = rs.getDouble("importo_prelievo");
-				Date data_transazione = rs.getDate("data_transazione");
-				Boolean importo_minimo = rs.getBoolean("importo_minimo");
-
-				Transazione transaction = new Transazione(n_serie, tipo_transazione, ora_transazione, n_ATM, n_filiale,
-						importo_prelievo, data_transazione, importo_minimo, n_carta);
-				transactions.add(transaction);
-			}
-
-			rs.close();
-			stmt.close();
-			conn.close();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return transactions;
-	}
-
-	public void leggi_importo() {
-		// read transaction amount from user input
-	}
-
 	public void controlla_rimanenza_carta() {
 		// check remaining balance on connected account
 	}

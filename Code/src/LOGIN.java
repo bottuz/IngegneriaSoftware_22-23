@@ -1,25 +1,36 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class LOGIN {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private static Connection connection;
@@ -31,11 +42,13 @@ public class LOGIN {
 	@SuppressWarnings("unused")
 	private database_accidenti dbaccidentata;
 	private int counter = 3;
-	private atm atm;
+	atm atm;
 	private Utente ubeneficiario;
+	Transazione t;
+	ArrayList<Transazione> transactions;
 
 	/**
-	 * Launch the application.
+	 * LANCIO L'APP.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -51,7 +64,7 @@ public class LOGIN {
 	}
 
 	/**
-	 * Create the application.
+	 * CREO L'APPLICAZIONE.
 	 */
 	public LOGIN() {
 		initialize();
@@ -59,7 +72,7 @@ public class LOGIN {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * INIZIALIZZO LA FRAME.
 	 */
 	private void initialize() {
 		// usiamo filiale di bergamo
@@ -109,12 +122,21 @@ public class LOGIN {
 					db = new database_accidenti(Integer.parseInt(ncarta));
 					if (db.cartaaccidentata(Integer.parseInt(ncarta))) {
 						JOptionPane.showMessageDialog(null, "TESSERA RITIRATA PER " + db.getTipo_accidente());
-						textField.setText("");
-						passwordField.setText("");
-					}
-					if (resultSet.next() && !db.cartaaccidentata(Integer.parseInt(ncarta))) {
+						frame.dispose();
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									LOGIN window = new LOGIN();
+									window.frame.setVisible(true);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						});
+					} else if (resultSet.next() && !db.cartaaccidentata(Integer.parseInt(ncarta))) {
 						// creo utente
 						utente = new Utente(Integer.parseInt(ncarta));
+						t = new Transazione("Login", 1, 1, utente.getN_carta(), 0);
 						// refresh textbox
 						textField.setText("");
 						passwordField.setText("");
@@ -122,8 +144,6 @@ public class LOGIN {
 						frame.hide();
 						createATM(utente);
 						resultSet.close();
-						connection.close();
-						statement.close();
 					} else {
 						counter--;
 						if (counter == 0) {
@@ -141,8 +161,10 @@ public class LOGIN {
 		});
 	}
 
-	// crea connessione al DB
-	private void createConnection() {
+	/**
+	 * CONNESSIONE AL DB.
+	 */
+	public void createConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
@@ -185,9 +207,17 @@ public class LOGIN {
 
 		// azione EXIT
 		logoutButton.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-				frame.show();
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							LOGIN window = new LOGIN();
+							window.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
 				atmFrame.dispose();
 			}
 		});
@@ -195,12 +225,17 @@ public class LOGIN {
 		// azione CAMBIO PIN
 		changeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String initialPin = JOptionPane.showInputDialog(null, "Inserisci il nuovo pin (5 cifre):");
-				String confirmedPin = JOptionPane.showInputDialog(null, "Conferma il nuovo pin:");
-				if (initialPin.equals(confirmedPin) && initialPin.length() == 5) {
-					utente.modificaPIN(initialPin);
-				} else {
-					System.out.println("Pin ERRATO. Riprova.");
+				boolean pinCorrect = false;
+				while (!pinCorrect) {
+					String initialPin = JOptionPane.showInputDialog(null, "Inserisci il nuovo pin (5 cifre):");
+					String confirmedPin = JOptionPane.showInputDialog(null, "Conferma il nuovo pin:");
+					if (initialPin.equals(confirmedPin) && initialPin.length() == 5) {
+						utente.modificaPIN(initialPin);
+						t = new Transazione("Cambio PIN", 1, 1, utente.getN_carta(), 0);
+						pinCorrect = true;
+					} else {
+						JOptionPane.showMessageDialog(null, "PIN ERRATO RIPROVA!");
+					}
 				}
 			}
 		});
@@ -219,6 +254,15 @@ public class LOGIN {
 			}
 		});
 
+		// azione LEGGI STORICO
+		viewTransButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				transactions = new ArrayList<Transazione>();
+				transactions = storico(utente.getN_carta());
+				printTransactions(transactions, atmFrame);
+			}
+		});
+
 		// azione PRELEVA CONTANTE
 		withdrawButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -233,6 +277,7 @@ public class LOGIN {
 					JOptionPane.showMessageDialog(null,
 							"IL TUO SALDO CONTABILE: " + utente.getCc().getBilancio() + " NON HAI ABBASTANZA SOLDI!");
 				}
+				t = new Transazione("Prelievo", 1, 1, utente.getN_carta(), qtaprelievo);
 			}
 		});
 
@@ -243,7 +288,7 @@ public class LOGIN {
 				utente.getCc().depositaContante(qtadeposito, utente.getN_conto());
 				JOptionPane.showMessageDialog(null,
 						"ENTRATA: " + qtadeposito + "€; NUOVO SALDO: " + utente.getCc().getBilancio() + "€");
-
+				t = new Transazione("Deposito", 1, 1, utente.getN_carta(), qtadeposito);
 			}
 		});
 
@@ -273,7 +318,7 @@ public class LOGIN {
 				} else {
 					JOptionPane.showMessageDialog(null, "INSERIRE UN NUMERO DI CONTO/COGNOME CORRETTO!");
 				}
-
+				t = new Transazione("Trasferimento", 1, 1, utente.getN_carta(), qtatrasferita);
 			}
 		});
 
@@ -284,5 +329,113 @@ public class LOGIN {
 
 		// mostra la finestra
 		atmFrame.setVisible(true);
+	}
+
+	public void printTransactions(ArrayList<Transazione> transactions, JFrame framedaaprire) {
+		JFrame frame = new JFrame("Transazioni");
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				framedaaprire.setVisible(true);
+			}
+		});
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+		for (Transazione t : transactions) {
+			JPanel transactionPanel = new JPanel();
+			transactionPanel.setLayout(new GridLayout(2, 8, 10, 10));
+			transactionPanel.setBorder(BorderFactory.createTitledBorder("Transazione"));
+
+			JLabel n_serieLabel = new JLabel("n_serie: ");
+			n_serieLabel.setFont(new Font("Arial", Font.BOLD, 14));
+			transactionPanel.add(n_serieLabel);
+			JLabel n_serieValue = new JLabel("" + t.getN_serie());
+			n_serieValue.setFont(new Font("Arial", Font.PLAIN, 14));
+			transactionPanel.add(n_serieValue);
+
+			JLabel tipo_transazioneLabel = new JLabel("tipo_transazione: ");
+			tipo_transazioneLabel.setFont(new Font("Arial", Font.BOLD, 14));
+			transactionPanel.add(tipo_transazioneLabel);
+			JLabel tipo_transazioneValue = new JLabel(t.getTipo_transazione());
+			tipo_transazioneValue.setFont(new Font("Arial", Font.PLAIN, 14));
+			transactionPanel.add(tipo_transazioneValue);
+
+			JLabel n_ATMLabel = new JLabel("n_ATM: ");
+			n_ATMLabel.setFont(new Font("Arial", Font.BOLD, 14));
+			transactionPanel.add(n_ATMLabel);
+			JLabel n_ATMValue = new JLabel("" + t.getN_ATM());
+			n_ATMValue.setFont(new Font("Arial", Font.PLAIN, 14));
+			transactionPanel.add(n_ATMValue);
+
+			JLabel n_filialeLabel = new JLabel("n_filiale: ");
+			n_filialeLabel.setFont(new Font("Arial", Font.BOLD, 14));
+			transactionPanel.add(n_filialeLabel);
+			JLabel n_filialeValue = new JLabel("" + t.getN_filiale());
+			n_filialeValue.setFont(new Font("Arial", Font.PLAIN, 14));
+			transactionPanel.add(n_filialeValue);
+
+			JLabel n_cartaLabel = new JLabel("n_carta: ");
+			n_cartaLabel.setFont(new Font("Arial", Font.BOLD, 14));
+			transactionPanel.add(n_cartaLabel);
+			JLabel n_cartaValue = new JLabel("" + t.getN_carta());
+			n_cartaValue.setFont(new Font("Arial", Font.PLAIN, 14));
+			transactionPanel.add(n_cartaValue);
+
+			JLabel importoLabel = new JLabel("importo: ");
+			importoLabel.setFont(new Font("Arial", Font.BOLD, 14));
+			transactionPanel.add(importoLabel);
+			JLabel importoValue = new JLabel("" + t.getImporto());
+			importoValue.setFont(new Font("Arial", Font.PLAIN, 14));
+			transactionPanel.add(importoValue);
+
+			JLabel data_transazioneLabel = new JLabel("data_transazione: ");
+			data_transazioneLabel.setFont(new Font("Arial", Font.BOLD, 14));
+			transactionPanel.add(data_transazioneLabel);
+			JLabel data_transazioneValue = new JLabel("" + t.getData_transazione().toString());
+			data_transazioneValue.setFont(new Font("Arial", Font.PLAIN, 14));
+			transactionPanel.add(data_transazioneValue);
+
+			JLabel ora_transazioneLabel = new JLabel("ora_transazione: ");
+			ora_transazioneLabel.setFont(new Font("Arial", Font.BOLD, 14));
+			transactionPanel.add(ora_transazioneLabel);
+			JLabel ora_transazioneValue = new JLabel("" + t.getOra_transazione().toString());
+			ora_transazioneValue.setFont(new Font("Arial", Font.PLAIN, 14));
+			transactionPanel.add(ora_transazioneValue);
+
+			panel.add(transactionPanel);
+		}
+		frame.add(new JScrollPane(panel));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setSize(screenSize.width, screenSize.height);
+		frame.setVisible(true);
+	}
+
+	public ArrayList<Transazione> storico(int n_carta) {
+		ArrayList<Transazione> transactions = new ArrayList<Transazione>();
+		try {
+			ResultSet rs = statement.executeQuery("SELECT * FROM transazione where n_carta ='" + n_carta
+					+ "' ORDER BY data_transazione,ora_transazione DESC");
+
+			while (rs.next()) {
+				int n_serie = rs.getInt("n_serie");
+				String tipo_transazione = rs.getString("tipo_transazione");
+				int n_ATM = rs.getInt("n_atm");
+				int n_filiale = rs.getInt("n_filiale");
+				int importo = rs.getInt("importo");
+				Date data_transazione = rs.getDate("data_transazione");
+				Time ora_transazione = rs.getTime("ora_transazione");
+
+				Transazione t = new Transazione(n_serie, tipo_transazione, n_ATM, n_filiale, n_carta, importo,
+						data_transazione, ora_transazione);
+				transactions.add(t);
+			}
+
+			rs.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return transactions;
 	}
 }

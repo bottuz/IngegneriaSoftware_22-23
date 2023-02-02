@@ -1,24 +1,21 @@
 import java.sql.Time;
-import java.util.Date;
 import java.util.Random;
-
 import javax.swing.JOptionPane;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Transazione {
 	private int n_serie;
 	private String tipo_transazione;
-	private Time ora_transazione;
 	private int n_ATM;
 	private int n_filiale;
-	private Double importo_prelievo;
-	private Date data_transazione;
-	private boolean importo_minimo;
 	private int n_carta;
+	private int importo;
+	private java.sql.Date data_transazione;
+	private Time ora_transazione;
 
 //////////////////////////////////////////////////////////////////////////////
 //								COSTRUTTORI									//
@@ -34,13 +31,12 @@ public class Transazione {
 			if (rs.next()) {
 				n_serie = rs.getInt("n_serie");
 				tipo_transazione = rs.getString("tipo_transazione");
-				ora_transazione = rs.getTime("ora_transazione");
 				n_ATM = rs.getInt("n_atm");
 				n_filiale = rs.getInt("n_filiale");
-				importo_prelievo = rs.getDouble("importo_prelievo");
-				data_transazione = rs.getDate("data_transazione");
-				importo_minimo = rs.getBoolean("importo_minimo");
 				n_carta = rs.getInt("n_carta");
+				setImporto(rs.getInt("importo"));
+				data_transazione = rs.getDate("data_transazione");
+				ora_transazione = rs.getTime("ora_transazione");
 			}
 			con.close();
 		} catch (Exception e) {
@@ -49,30 +45,34 @@ public class Transazione {
 	}
 
 	// costruttore nuova TRANSAZIONE
-	public Transazione(String tipo_transazione, int n_atm, int n_filiale, Double importo_prelievo,
-			Boolean importo_minimo, int n_carta) {
+	public Transazione(String tipo_transazione, int n_atm, int n_filiale, int n_carta, int importo) {
 		Random rand = new Random();
 		for (int i = 0; i < 10; i++) {
 			n_serie = rand.nextInt(999999);
 		}
 		this.tipo_transazione = tipo_transazione;
-		ora_transazione = new Time(System.currentTimeMillis());
 		this.n_ATM = n_atm;
 		this.n_filiale = n_filiale;
-		this.importo_prelievo = importo_prelievo;
-		data_transazione = new Date();
-		this.importo_minimo = importo_minimo;
+		this.setImporto(importo);
 		this.n_carta = n_carta;
+		data_transazione = new java.sql.Date(System.currentTimeMillis());
+		ora_transazione = new Time(System.currentTimeMillis());
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM", "admin", "admin");
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("INSERT INTO atm VALUES('" + n_serie + "','" + tipo_transazione + "','"
-					+ ora_transazione + "','" + n_atm + "','" + n_filiale + "','" + importo_prelievo + "','"
-					+ data_transazione + "','" + importo_minimo + "','" + n_carta + "')");
-			if (rs.next()) {
-				JOptionPane.showMessageDialog(null, "TRANSAZIONE CREATA CON SUCCESSO!");
-			}
+			String query = "INSERT INTO transazione (n_serie, tipo_transazione, n_atm, n_filiale,n_carta, importo, data_transazione,ora_transazione) VALUES (?,?,?,?,?,?,?,?)";
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setInt(1, n_serie);
+			stmt.setString(2, tipo_transazione);
+			stmt.setInt(3, n_atm);
+			stmt.setInt(4, n_filiale);
+			stmt.setInt(5, n_carta);
+			stmt.setInt(6, importo);
+			stmt.setDate(7, data_transazione);
+			stmt.setTime(8, ora_transazione);
+			stmt.executeUpdate();
+			// JOptionPane.showMessageDialog(null, "TRANSAZIONE CREATA CON SUCCESSO!");
 			con.close();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
@@ -80,17 +80,16 @@ public class Transazione {
 	}
 
 	// mi serve questo costruttore per lo storico di ricevuta
-	public Transazione(int n_serie, String tipo_transazione, Time ora_transazione, int n_ATM, int n_filiale,
-			Double importo_prelievo, Date data_transazione, Boolean importo_minimo, int n_carta) {
+	public Transazione(int n_serie, String tipo_transazione, int n_ATM, int n_filiale, int n_carta, int importo,
+			java.sql.Date data_transazione, Time ora_transazione) {
 		this.n_serie = n_serie;
 		this.tipo_transazione = tipo_transazione;
-		this.ora_transazione = ora_transazione;
 		this.n_ATM = n_ATM;
 		this.n_filiale = n_filiale;
-		this.importo_prelievo = importo_prelievo;
-		this.data_transazione = data_transazione;
-		this.importo_minimo = importo_minimo;
 		this.n_carta = n_carta;
+		this.setImporto(importo);
+		this.data_transazione = data_transazione;
+		this.ora_transazione = ora_transazione;
 	}
 
 //////////////////////////////////////////////////////////////////////////////
@@ -137,6 +136,14 @@ public class Transazione {
 		return n_carta;
 	}
 
+	public int getImporto() {
+		return importo;
+	}
+
+	public void setImporto(int importo) {
+		this.importo = importo;
+	}
+
 	public void setN_carta(int n_carta) {
 		this.n_carta = n_carta;
 	}
@@ -145,28 +152,12 @@ public class Transazione {
 		this.n_filiale = n_filiale;
 	}
 
-	public Double getImporto_prelievo() {
-		return importo_prelievo;
-	}
-
-	public void setImporto_prelievo(Double importo_prelievo) {
-		this.importo_prelievo = importo_prelievo;
-	}
-
-	public Date getData_transazione() {
+	public java.sql.Date getData_transazione() {
 		return data_transazione;
 	}
 
-	public void setData_transazione(Date data_transazione) {
+	public void setData_transazione(java.sql.Date data_transazione) {
 		this.data_transazione = data_transazione;
-	}
-
-	public boolean getImporto_minimo() {
-		return importo_minimo;
-	}
-
-	public void setImporto_minimo(boolean importo_minimo) {
-		this.importo_minimo = importo_minimo;
 	}
 
 //////////////////////////////////////////////////////////////////////////////
