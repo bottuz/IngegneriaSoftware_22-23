@@ -1,0 +1,346 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: NGioxVGI+hyglfp3PyLGnqTVcmjDs
+ Ag9gU/47+q1TYs=
+SHA-256-Digest-Manifest: ikmI8lB5NWzq+kWHBdTjrUwPBxSPtiATqFYI5Z2ocTE=
+Created-By: 1.8.0_221 (Oracle Corporation)
+
+Name: plugins/org.eclipse.debug.ui_3.11.202.v20161114-0338.jar
+SHA-256-Digest: wDoWCahopPE8jB5x3rZW0TxeVaUS3g0V4vtQUxyNF3k=
+
+Name: plugins/org.eclipse.equinox.preferences_3.6.1.v20160815-1406.jar
+SHA-256-Digest: tucGPqn1i4a9sUnJsSlkhsiNqoS0+bKo2pnn/g+UXPY=
+
+Name: plugins/org.eclipse.emf.ecore.xmi_2.12.0.v20160420-0247.jar
+SHA-256-Digest: KO8Nlr2muraXxFUWDLsstaOLioN0of7oAVDixSM6QmU=
+
+Name: content.xml.xz
+SHA-256-Digest: BlzmkXIssd8XwlNJxTUgEYkXzIYXgp1sxOlg2WB0A6A=
+
+Name: plugins/org.eclipse.ui.workbench.texteditor_3.10.1.v20160818-162
+ 6.jar
+SHA-256-Digest: mu6+QAeW4FkvousoupQhUlU28V37GLONNEe29tYipEU=
+
+Name: plugins/org.eclipse.compare.core_3.6.0.v20160418-1534.jar
+SHA-256-Digest: OtMGjC43e8BMZrtgF+s658zRrLYdk/zpW4kOeS/b30I=
+
+Name: plugins/org.eclipse.compare_3.7.1.v20170103-1805.jar
+SHA-256-Digest: jBW0sHJfsr1fjNwCn5tGYBQ+4vLJIkYEd9Fld0vROHw=
+
+Name: plugins/org.eclipse.core.databinding_1.6.0.v20160412-0910.jar
+SHA-256-Digest: 3J/WeZcuhkWyw9ojiEGoDpR+32p9CbugKiXhUFQ8o08=
+
+Name: plugins/org.eclipse.equinox.util_1.0.500.v20130404-1337.jar
+SHA-256-Digest: CIYmHWgNiXEn/uZKY3Bko2rcZhL9sei08WYhPZtwNaQ=
+
+Name: plugins/javax.servlet_3.1.0.v201410161800.jar
+SHA-256-Digest: Ulrb1WVV/qf7mOXOyMtPtgEXgELgq8FIebVGXA3ixDE=
+
+Name: plugins/org.eclipse.e4.ui.workbench.swt_0.14.1.v20160829-0832.ja
+ r
+SHA-256-Digest: BWzqlsm0JuXdngCurCKkLna+PTHjrLv8UP55FiUgY9M=
+
+Name: plugins/org.eclipse.e4.ui.workbench_1.4.0.v20160517-1624.jar
+SHA-256-Digest: AhVHPb46Ox1HoHiRdDbnDHcSpLQYLsJOG8omKVG1VLU=
+
+Name: plugins/org.eclipse.ui.workbench_3.108.3.v20170216-1539.jar
+SHA-256-Digest: e9uYolYp6VJ2GS3vTHdfYXK7tSiazAHTIYUmQxjE4X4=
+
+Name: plugins/org.eclipse.e4.core.commands_0.11.100.v20160506-0804.jar
+SHA-256-Digest: cVCQ8BUqfjS6lQ45hE9l9d+vmP+lbE+XPoBfMQ5/tL8=
+
+Name: plugins/org.eclipse.emf.ecore_2.12.0.v20160420-0247.jar
+SHA-256-Digest: 4UBGg7qaX67ityEdikQ4CAeQ4gnhjQ5Az1S72eP2cb8=
+
+Name: plugins/org.eclipse.equinox.p2.repository_2.3.200.v20160421-0324
+ .jar
+SHA-256-Digest: 4y50ZIr8k7J5Bd/xzNYQ9SwPrAloW4NFi6orHjrSmhc=
+
+Name: plugins/org.eclipse.equinox.security_1.2.200.v20150715-1528.jar
+SHA-256-Digest: SJaLCgDrLVwEEEPbZpUbzhvBKxlMgzJ380XFTRuI8kg=
+
+Name: plugins/org.eclipse.jface.databinding_1.8.1.v20161026-1531.jar
+SHA-256-Digest: 4m5ZcJ2uGBVcPlptOwB+lZwzdAGKOtz09/BAyYkWawI=
+
+Name: plugins/org.eclipse.ltk.ui.refactoring_3.8.0.v20160518-1817.jar
+SHA-256-Digest: P5XINZTZER9EH6c/y5PZg4VA3+Dj3AvRPFy3jzRq+SM=
+
+Name: plugins/org.apache.batik.css_1.7.0.v201011041433.jar
+SHA-256-Digest: uc66sg2qeSms6WmCEr5670jZrrzbUmmrHt+4EpgkFzw=
+
+Name: plugins/org.eclipse.equinox.p2.core_2.4.100.v20160419-0834.jar
+SHA-256-Digest: 91MWnZsYAb8nENmcs14s4PRAnGj4p3cQN8lxgcI0keU=
+
+Name: plugins/org.eclipse.ui.views.properties.tabbed_3.7.0.v20160310-0
+ 903.jar
+SHA-256-Digest: MLtrbItnOTSAjkQd8iK79jnQu/6fTRFPs0nv9zT4NsQ=
+
+Name: plugins/org.eclipse.e4.ui.di_1.1.100.v20160506-0759.jar
+SHA-256-Digest: 9lEdgeSVWor7O+bSYpYUxuNCV3VLsOlnZQYf1JZ9dGA=
+
+Name: plugins/org.eclipse.e4.ui.model.workbench_1.2.0.v20160229-1459.j
+ ar
+SHA-256-Digest: WfE+MTet9JZORRNPI5gt47L+65hvW71aw/5cxwub5Cg=
+
+Name: plugins/org.eclipse.e4.ui.css.swt_0.12.100.v20160517-1505.jar
+SHA-256-Digest: lR04Id6JGHQgm/c/gp070GZGVbxXKyU9T9LZRqqTbQs=
+
+Name: plugins/org.eclipse.e4.core.di.extensions_0.14.0.v20160211-1614.
+ jar
+SHA-256-Digest: /nRoz+LQuGMb9ElXEKkR6KMnFqKDxtit/yUT+b+LHcA=
+
+Name: plugins/org.eclipse.ui.navigator.resources_3.5.101.v20161006-064
+ 0.jar
+SHA-256-Digest: L6aa6nps4EMtDfyLOaM4SH8VGhM1KHVi96w3aTjupIw=
+
+Name: plugins/org.eclipse.equinox.ds_1.4.400.v20160226-2036.jar
+SHA-256-Digest: T8Js8fdXrxYJRLmDFN+WTY7J3tpH/40uea3A4yRV2eM=
+
+Name: plugins/org.eclipse.swt.win32.win32.x86_3.105.3.v20170228-0512.j
+ ar
+SHA-256-Digest: X+jVSETZ9shepNdPGXiFb7V2BXggaNs8yBwzMLa5/5M=
+
+Name: plugins/org.eclipse.ui_3.108.1.v20160929-1045.jar
+SHA-256-Digest: WoMJVsUjqYn3gnYmoSp9oCVE5PifDqdwcWJthDiY+is=
+
+Name: plugins/com.structure101.connector.eclipse.plugin_6.1.21434.jar
+SHA-256-Digest: A+EVWxOtAR9VBboDP/pcgrbVE4t2XYjX2CcrE+Qk8Ig=
+
+Name: p2.index
+SHA-256-Digest: lydzvOWnf3ZjvpBANJGSPwwdKtiySJynSHwnwtHP7E8=
+
+Name: plugins/org.eclipse.e4.ui.css.core_0.12.1.v20161114-0210.jar
+SHA-256-Digest: 3kkpMj2aY+X/THYe1y4Z/51lw3qPRsqvWa09mlFN43Q=
+
+Name: plugins/org.eclipse.team.core_3.8.0.v20160418-1534.jar
+SHA-256-Digest: Vp2FjwekY78rKuWCFiYjFaZ3RcpNbogs5XGt4uPKeqc=
+
+Name: plugins/org.eclipse.help_3.7.0.v20160602-1307.jar
+SHA-256-Digest: fUtVSEe5WRNYHZ05sHROpSdPQCpeP7r8tgOS0hqvfdA=
+
+Name: plugins/org.eclipse.jdt.core.manipulation_1.7.0.v20160419-0705.j
+ ar
+SHA-256-Digest: Y5g4CkcIFWrdE3+PBU42QV6gdknXjWqYLumEN+hFkt4=
+
+Name: plugins/org.eclipse.ltk.core.refactoring_3.7.0.v20160419-0705.ja
+ r
+SHA-256-Digest: 5a3NezCU3LP56Vr/aOejJJIaknf+d0pAvJbX49wEG0M=
+
+Name: plugins/org.eclipse.core.resources_3.11.1.v20161107-2032.jar
+SHA-256-Digest: xWGVfnWZMR7QgLsORB+I1D6cTNVb1shW6BhPZ7B9d9o=
+
+Name: plugins/org.eclipse.core.variables_3.3.0.v20160419-1720.jar
+SHA-256-Digest: WFXtvOLQg/tJ5KD3eer4UOXmf6cmo8nao1tCrAIR7rs=
+
+Name: plugins/org.eclipse.e4.ui.workbench.renderers.swt_0.14.1.v201701
+ 17-1415.jar
+SHA-256-Digest: l4p8Xt7wsEX909OmNpvEc1RYwW9hFz1g9Huhmacygf4=
+
+Name: artifacts.xml.xz
+SHA-256-Digest: /JPvgNxpkRIbIHXjmh0O9+bk8BuKZtMTUeRCEwIuuuo=
+
+Name: plugins/org.eclipse.e4.core.services_2.0.100.v20160509-1032.jar
+SHA-256-Digest: HSW7qBoVGiz+UHF6wQLubHAqsyMVafqjchs7O/sLwzE=
+
+Name: plugins/org.eclipse.fx.osgi_3.0.0.201705220748.jar
+SHA-256-Digest: XwvwJbtUNPpizVX57pgi+JAWl2P8Cufqg5lOEKKrJZ4=
+
+Name: plugins/com.ibm.icu_56.1.0.v201601250100.jar
+SHA-256-Digest: bdQxmBG52AhxkvdXGTctfzR1QMH9jSYu9Ks2DNcAV9g=
+
+Name: plugins/org.eclipse.emf.common_2.12.0.v20160420-0247.jar
+SHA-256-Digest: IILtevLIA05jMRtA+qpEMgXrq8QU9haA3zEX1ArJCzE=
+
+Name: plugins/org.eclipse.e4.core.di_1.6.1.v20160712-0927.jar
+SHA-256-Digest: I1EWch9xYet1aCmQiYarODJyiLiHT4US04qgWDJlSUo=
+
+Name: features/com.structure101.connector.eclipse.feature_6.1.21434.ja
+ r
+SHA-256-Digest: WpbsGo9q+R++xd0YyWpTbIDdCG3JwgHTF4bnEG1GwrQ=
+
+Name: plugins/javax.xml_1.3.4.v201005080400.jar
+SHA-256-Digest: h1uTnc1icMznfJPgZJLuP98eoDHGfJmFL4T9qjlvddQ=
+
+Name: plugins/org.eclipse.e4.ui.bindings_0.11.100.v20160509-1025.jar
+SHA-256-Digest: PL3m0H1I7frBtLm7bVEqJxAW2y2uTByve9V4O74RRo4=
+
+Name: plugins/org.eclipse.e4.ui.widgets_1.1.100.v20160506-0759.jar
+SHA-256-Digest: 96GEMtuHSFzdoYd0Jc8pZQabdtcmS9bhiRN4x2I79xU=
+
+Name: plugins/org.eclipse.equinox.p2.metadata.repository_1.2.300.v2016
+ 0419-0834.jar
+SHA-256-Digest: U8F/YMEY08ZVxLDa8usJls5Q08ExqsXG8avHSu2TmmE=
+
+Name: plugins/org.eclipse.ui.navigator_3.6.101.v20161006-1120.jar
+SHA-256-Digest: xCiQ3e5a9u1In/ncYCMcnczuh1ZMJl6OpiyuBptNeY4=
+
+Name: plugins/org.eclipse.e4.core.di.annotations_1.5.0.v20151127-1241.
+ jar
+SHA-256-Digest: F0RDHGNPmVZ7SqsN8HuBlqWp7Q08kvZDUbuMN63+wYs=
+
+Name: plugins/org.eclipse.ui.ide_3.12.3.v20170119-0935.jar
+SHA-256-Digest: pktNS5Cj6HqXNqSm4eicmjyNsmAyyIQbGNjqpqjqKnE=
+
+Name: plugins/javax.inject_1.0.0.v20091030.jar
+SHA-256-Digest: UfMiNt63ONZ6eCTrk5ixUppBL2GwZAQL+JZnjWb5mEc=
+
+Name: plugins/org.apache.batik.util.gui_1.7.0.v200903091627.jar
+SHA-256-Digest: s8XCa3Gcd/INWaCVdwFwokKlmEzrLjj9Em0n/o8iZ5E=
+
+Name: plugins/org.eclipse.e4.ui.workbench3_0.13.100.v20160506-0759.jar
+SHA-256-Digest: 6xLdjde18bA2blAfVDghqY6yi4SLrF+l2zfMcdRGR7M=
+
+Name: plugins/org.eclipse.jdt.launching_3.8.101.v20161111-2014.jar
+SHA-256-Digest: UO5G/txYw+gfNqTNPXFFVzhZml7FHhhDorNYs063LQs=
+
+Name: plugins/org.eclipse.e4.ui.css.swt.theme_0.10.100.v20160523-0836.
+ jar
+SHA-256-Digest: l9eCW6ddfuRKZDQ2jeTJA/hcyuc/IvgPIvmQ5TvrRYA=
+
+Name: plugins/org.eclipse.swt_3.105.3.v20170228-0512.jar
+SHA-256-Digest: dNNyLbDaeOMQ1WYjMHGMVSZTc+Q/dnJViKTP5wMeGDU=
+
+Name: plugins/org.eclipse.team.ui_3.8.0.v20160518-1906.jar
+SHA-256-Digest: 8ZpjyWyM1r5UVyMqgHZpEKD5mPCZQG5JTqfl71Vr1IE=
+
+Name: plugins/org.w3c.css.sac_1.3.1.v200903091627.jar
+SHA-256-Digest: 3RgincpIcHS8MIhmDo1HACTzd5QOfKi7riaaK2Nz6Lc=
+
+Name: plugins/org.eclipse.core.contenttype_3.5.100.v20160418-1621.jar
+SHA-256-Digest: NnEFiDjJKSjmGneIlqQVsaTl0iwp84ibGDy+9peiHqc=
+
+Name: plugins/org.eclipse.debug.core_3.10.100.v20160419-1720.jar
+SHA-256-Digest: FUEInOBG8Oy8Qa7z5ZJACw2ejbCnrSnCxuGPV9/zNaY=
+
+Name: plugins/org.eclipse.jdt.debug_3.10.1.v20160811-0441.jar
+SHA-256-Digest: CP59qx9aq5auVfffclfKOtsQG5GGtPjJdhx49KxElsU=
+
+Name: index.html
+SHA-256-Digest: dUdC0CUrR1z1V648kXl+auhr11MiGQY54NjG9O8wRL0=
+
+Name: content.jar
+SHA-256-Digest: uvmIEV3MHuCq/XlV6pFBtnRh7S/ALQDcGi4pRxRBdRw=
+
+Name: plugins/org.eclipse.core.runtime_3.12.0.v20160606-1342.jar
+SHA-256-Digest: uVUtHvZf9Obm5X55QfqlIe52jessGFarnhHyyFegR+A=
+
+Name: plugins/org.eclipse.e4.ui.services_1.2.100.v20160506-0759.jar
+SHA-256-Digest: xKJHlLAZfAG2l3HRCObfAI2aMti7olAeoUC0SFtffSg=
+
+Name: plugins/org.eclipse.jdt.ui_3.12.2.v20160929-0804.jar
+SHA-256-Digest: Rdrjxdv3MdmuICEL+54MQYU6JLUmiAjeQD4mx+3g5BI=
+
+Name: plugins/org.eclipse.ui.forms_3.7.1.v20161220-1635.jar
+SHA-256-Digest: 5KtR2w9JMJJH5wURf0fyWgtTeRETkuR2qAX87Eb4+XE=
+
+Name: plugins/org.eclipse.core.databinding.observable_1.6.0.v20160511-
+ 1747.jar
+SHA-256-Digest: n832JGz1tqHYbp31z22bEmhBjlw1xHCerOsvDjOpdgo=
+
+Name: plugins/org.eclipse.e4.core.contexts_1.5.1.v20170203-1100.jar
+SHA-256-Digest: pw5gYFYqulMJ5/XTfGP+/uuY1rAJYGq28TGwOIIDCmg=
+
+Name: plugins/org.eclipse.equinox.common_3.8.0.v20160509-1230.jar
+SHA-256-Digest: HlDVjPLUUMiIyV+vxUrz9B2dg4mCKz1g/3WFlf+LBPE=
+
+Name: plugins/org.eclipse.jface_3.12.2.v20170113-2113.jar
+SHA-256-Digest: NZM89LBU6MdF2ZhpAzKSABWssj7MjSIVV5OxuELWQPE=
+
+Name: plugins/org.eclipse.text_3.6.0.v20160503-1849.jar
+SHA-256-Digest: GUXokikUWxPaVlYG3Hy6AxWXtUxh4IbPnUzTHbxajxY=
+
+Name: plugins/org.eclipse.emf.ecore.change_2.11.0.v20160420-0247.jar
+SHA-256-Digest: WEq9PEGVHEXj+Cs+LJOK7g6a3ZkHasbXZ/XN7LFSKNk=
+
+Name: plugins/org.eclipse.e4.emf.xpath_0.1.200.v20160506-0804.jar
+SHA-256-Digest: ZOC7O8CLrmyt9uQAgr9XYir/ULsFnCZP2mAY5YAbuTM=
+
+Name: plugins/org.eclipse.core.filesystem_1.6.1.v20161113-2349.jar
+SHA-256-Digest: vF76ni1YaSbPUrW9hiIMtUVjoEKgz9AV4pZ7OfNupLs=
+
+Name: plugins/org.eclipse.osgi.services_3.5.100.v20160504-1419.jar
+SHA-256-Digest: K3U+ejHOUjUeQo76589pBDrqGJq+gC3xdZfHbD0tgAk=
+
+Name: plugins/org.apache.commons.jxpath_1.3.0.v200911051830.jar
+SHA-256-Digest: Kaq2PKT0vmm707HK9b3wKb766OS4o31GoumvRdwoI7U=
+
+Name: plugins/org.eclipse.core.commands_3.8.1.v20161221-1651.jar
+SHA-256-Digest: 8f8Gjr3AnW8UwkY2M129aG4rIAf0bRJNCG/dr5gR67o=
+
+Name: plugins/org.eclipse.equinox.p2.metadata_2.3.100.v20160427-2220.j
+ ar
+SHA-256-Digest: Tm6YL0j+d3F9fDVl4Ag+FuommPcsflhfILgMuJLiccY=
+
+Name: plugins/org.eclipse.equinox.p2.engine_2.4.100.v20160419-0834.jar
+SHA-256-Digest: SO6JD/01IUxNhatBqAz+HVT6qhslKn53oYL1usnxBoM=
+
+Name: plugins/org.eclipse.jdt.core_3.12.3.v20170228-1205.jar
+SHA-256-Digest: lScEc4rqHly9/ffzP679fJ04Z1s0K9oPWBYhhWyqbjE=
+
+Name: plugins/org.eclipse.equinox.bidi_1.0.0.v20160307-1318.jar
+SHA-256-Digest: YQCX8E4FFpBZMwUF0VQiWUWUZ0cOozdIdUrza4O1XXQ=
+
+Name: plugins/org.eclipse.jface.text_3.11.2.v20170220-1911.jar
+SHA-256-Digest: zgakPOyPv73XF7DBUtx238Z6l3sRTjzJLk49OFKuEBw=
+
+Name: plugins/org.eclipse.core.jobs_3.8.0.v20160509-0411.jar
+SHA-256-Digest: poN/oHLF5/hUUNTpSC76JpYiPqujv6yQ/C8a6gWSz+s=
+
+Name: plugins/org.eclipse.core.expressions_3.5.100.v20160418-1621.jar
+SHA-256-Digest: XvtLzaVAtzYfgymgNJClSfc9m0EYbDHegp1yX+XE9xY=
+
+Name: plugins/org.eclipse.ui.console_3.6.201.v20161107-0337.jar
+SHA-256-Digest: GUFbVq8UD9oG/jkQoN193sgdqCkd6gD6U3UibfLY/+Q=
+
+Name: plugins/org.eclipse.core.net_1.3.0.v20160418-1534.jar
+SHA-256-Digest: 4odgIQ6fkYIPA7JDBOrsB4EM7JnVnZatyiTuXYu6yYM=
+
+Name: site.xml
+SHA-256-Digest: /q8/P5KOL3Seyb1F4e9yKpm5TZVELLA6vHQz/YP/n/4=
+
+Name: plugins/org.eclipse.ui.editors_3.10.1.v20161106-1856.jar
+SHA-256-Digest: rquLJr3foaObWl/mb80bWMYTIH4CkgAp5CuxCGg+KQo=
+
+Name: plugins/org.eclipse.core.filebuffers_3.6.0.v20160503-1849.jar
+SHA-256-Digest: EdUKanlDUvko/s82ZA5ZzyKfV2bdq0dKyhgxAtYuw7k=
+
+Name: plugins/org.eclipse.e4.ui.workbench.addons.swt_1.2.101.v20170206
+ -1129.jar
+SHA-256-Digest: grsKUOdASPs0UW6n/M8aHvTTOBNF0gZ+CuFIUqmJQIw=
+
+Name: plugins/org.w3c.dom.smil_1.0.1.v200903091627.jar
+SHA-256-Digest: oIW/6Cxtygup0f6FJHJ8VpEltsF5B3VXFvQi+GTQ8vM=
+
+Name: plugins/org.apache.batik.util_1.7.0.v201011041433.jar
+SHA-256-Digest: UrD3fKF1Whh2I8zqwuqLgXCqwG1p3pE5DSPNsGk7vJI=
+
+Name: plugins/org.tukaani.xz_1.3.0.v201308270617.jar
+SHA-256-Digest: 3EGwXFisb4PIdK+BpeM2ys5aGuOc2rocV5GIwAACWEk=
+
+Name: plugins/org.w3c.dom.events_3.0.0.draft20060413_v201105210656.jar
+SHA-256-Digest: lQ0X3glXZDnbf5dIhWYZSCEUYsloxJQnzOKUUiwf/3I=
+
+Name: artifacts.jar
+SHA-256-Digest: uo4Vahiw/RNT0ypSOUWMHt+ZBvkGbRQVBsP2LO6soEE=
+
+Name: plugins/org.eclipse.osgi_3.11.3.v20170209-1843.jar
+SHA-256-Digest: hXh0QJwCvarl9bZACk5y8gOxgEXZmEFLjwBli3GvKe0=
+
+Name: plugins/org.eclipse.search_3.11.1.v20161113-1700.jar
+SHA-256-Digest: zqACwFFIG4sZ+sSfi5JPnbHUOOnDL7zTUNCPgnTuVbc=
+
+Name: plugins/org.eclipse.equinox.registry_3.6.100.v20160223-2218.jar
+SHA-256-Digest: wbJaz07JhgI6fXf2Rpotmmb0wyQrH3Z+1prrtQIV2nY=
+
+Name: plugins/org.eclipse.equinox.app_1.3.400.v20150715-1528.jar
+SHA-256-Digest: lByCJL5ryI4GHtWkm84Dv4nlqePeVNBxjF7P2hM844E=
+
+Name: plugins/org.eclipse.ui.views_3.8.102.v20170111-0801.jar
+SHA-256-Digest: 7GQ0bzZGIU8oJ2CMqGQDims9us5d0SuTMIsJz261uzo=
+
+Name: plugins/org.w3c.dom.svg_1.1.0.v201011041433.jar
+SHA-256-Digest: pgfWJtJrYIbLEfo5OHLfedaKxl8zAlE1ILIKdF7z+Ts=
+
+Name: plugins/org.eclipse.core.databinding.property_1.6.0.v20160427-08
+ 52.jar
+SHA-256-Digest: etTMpWh6RWuPNKcgHEdcWtVX2TiHCHhkCCg0vlh1mT8=
+
