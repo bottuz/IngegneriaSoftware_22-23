@@ -10,5 +10,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="C:/Users/botta/OneDrive/Documenti/GitHub/IngegneriaSoftware_22-23/Code/structure101-connector-java-eclipse-6.1.21434/artifacts.jar"/>
 	<classpathentry kind="lib" path="C:/Users/botta/OneDrive/Documenti/GitHub/IngegneriaSoftware_22-23/Code/structure101-connector-java-eclipse-6.1.21434/content.jar"/>
+	<classpathentry kind="lib" path="C:/Users/botta/OneDrive/Documenti/GitHub/IngegneriaSoftware_22-23/Code/lib/mysql-connector-j-8.0.31.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
