@@ -4,6 +4,9 @@ import org.junit.Test;
 
 public class atmTest {
 
+	// verifica se il numero di serie e il numero di filiale dell'oggetto creato
+	// sono entrambi uguali a 1.
+	// PASSA
 	@Test
 	public void testAtmCreation() {
 		atm atm = new atm("Bergamo");

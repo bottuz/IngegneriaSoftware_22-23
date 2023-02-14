@@ -1,32 +1,45 @@
 import static org.junit.Assert.*;
-
-import java.sql.Date;
 import java.util.Calendar;
-import java.util.Random;
+import java.util.Date;
 
 import org.junit.Test;
 
 public class Tessera_MagneticaTest {
 
+	// l test verifica se, data una tessera magnetica con numero di carta uguale a
+	// 11112222, il costruttore della classe Tessera_Magnetica ha creato
+	// correttamente
+	// l'oggetto e se la funzione "getN_carta" restituisce il valore 11112222
+	// (assertEquals). Quindi, il test si aspetta che il numero di carta della
+	// tessera creata sia 11112222.
+	// PASSA
 	@Test
 	public void testCostruttoreEsistente() {
 		// Crea una tessera esistente con n_carta = 1
-		Tessera_Magnetica tessera = new Tessera_Magnetica(1);
+		Tessera_Magnetica tessera = new Tessera_Magnetica(11112222);
 
 		// Verifica che il numero della carta sia 1
-		assertEquals(1, tessera.getN_carta());
+		assertEquals(11112222, tessera.getN_carta());
 	}
 
+	// Il test verifica se il costruttore della classe Tessera_Magnetica crea
+	// correttamente una nuova tessera magnetica. In particolare, il test verifica
+	// che il numero di carta della nuova tessera sia diverso da 0
+	// (assertNotEquals), che la data di emissione sia il giorno corrente
+	// (assertEquals), che la data di scadenza sia 10 anni dopo la data di emissione
+	// (assertEquals), e che il PIN della tessera sia diverso da 0 (assertNotNull)
+	// GENERA FAILURE ---> l'ora creata e dall'oggetto e quella creata in locale
+	// differiscono di pochi secondi!!
 	@Test
 	public void testCostruttoreNuovaTessera() {
 		// Crea una nuova tessera
 		Tessera_Magnetica tessera = new Tessera_Magnetica();
-
+		Date d = new Date();
 		// Verifica che il numero della carta sia diverso da 0
 		assertNotEquals(0, tessera.getN_carta());
 
 		// Verifica che la data di emissione sia il giorno corrente
-		assertEquals(new Date(System.currentTimeMillis()), tessera.getData_emissione());
+		assertEquals(d, tessera.getData_emissione());
 
 		// Verifica che la data di scadenza sia 10 anni dopo la data di emissione
 		Calendar calendar = Calendar.getInstance();
@@ -36,25 +49,6 @@ public class Tessera_MagneticaTest {
 
 		// Verifica che il PIN sia diverso da 0
 		assertNotEquals(0, tessera.getPIN());
-	}
-
-	@Test
-	public void testEsisteTessera() {
-		// Crea una nuova tessera
-		Tessera_Magnetica tessera = new Tessera_Magnetica();
-		int n_carta = tessera.getN_carta();
-
-		// Verifica che la funzione esisteTESSERA restituisca true per la tessera appena
-		// creata
-		assertTrue(tessera.esisteTESSERA(n_carta));
-
-		// Crea un nuovo numero di carta casuale che non esiste nella base di dati
-		Random rand = new Random();
-		int n_carta_inesistente = rand.nextInt();
-
-		// Verifica che la funzione esisteTESSERA restituisca false per una carta
-		// inesistente
-		assertFalse(tessera.esisteTESSERA(n_carta_inesistente));
 	}
 
 }

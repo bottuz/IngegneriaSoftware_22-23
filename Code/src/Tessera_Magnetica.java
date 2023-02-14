@@ -25,7 +25,7 @@ public class Tessera_Magnetica {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM tessera_magnetica where n_carta ='" + n_carta + "'");
 			if (rs.next()) {
-				n_carta = rs.getInt("n_carta");
+				this.n_carta = n_carta;
 				data_emissione = rs.getDate("data_emissione");
 				data_scadenza = rs.getDate("data_scadenza");
 				PIN = rs.getInt("PIN");
