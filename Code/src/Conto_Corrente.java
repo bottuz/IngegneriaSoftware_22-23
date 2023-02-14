@@ -25,7 +25,7 @@ public class Conto_Corrente {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM conto_corrente where n_conto ='" + n_conto + "'");
 			if (rs.next()) {
-				n_conto = rs.getInt("n_conto");
+				this.n_conto = n_conto;
 				importo_minimo = rs.getBoolean("importo_minimo");
 				setBilancio(rs.getDouble("bilancio"));
 			}

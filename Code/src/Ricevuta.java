@@ -28,7 +28,7 @@ public class Ricevuta {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM ricevuta WHERE n_serie='" + n_serie + "'");
 			if (rs.next()) {
-				n_serie = rs.getInt("n_serie");
+				this.n_serie = n_serie;
 				n_carta = rs.getInt("n_carta");
 				ora_stampa = rs.getTime("ora_stampa");
 				n_ATM = rs.getInt("n_atm");
