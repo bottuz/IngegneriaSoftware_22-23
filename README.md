@@ -10,8 +10,8 @@ La seguente documentazione comprende i documenti realizzati per la progettazione
 ### ANALISI REQUISITI
 Dopo un' attenta analisi dei requisiti abbiamo identificato:
 - [REQUISITI](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Analisi%20Requisiti/ANALISI%20DEI%20REQUISITI.docx)
-- [GLOSSARIO] (https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Analisi%20Requisiti/GLOSSARIO.docx)
-- [DESCRIZIONE PROGETTO] (https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Analisi%20Requisiti/DESCRIZIONE%20PROGETTO.docx)
+- [GLOSSARIO](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Analisi%20Requisiti/GLOSSARIO.docx)
+- [DESCRIZIONE PROGETTO](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Analisi%20Requisiti/DESCRIZIONE%20PROGETTO.docx)
 
 ### UML
 Abbiamo realizzato i vari diagrammi grazie a STARUML.
