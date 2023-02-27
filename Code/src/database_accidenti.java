@@ -6,6 +6,12 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+/**
+ * La classe database_accidenti gestisce le carte accidentate (es. furto...).
+ * 
+ * @author botta
+ * @version 1.4.3
+ */
 public class database_accidenti {
 	private int n_carta;
 	private String tipo_accidente;
@@ -14,7 +20,12 @@ public class database_accidenti {
 //								COSTRUTTORI									//
 //////////////////////////////////////////////////////////////////////////////
 
-	// costruttore esistente sul db
+	/**
+	 * Costruisce l'oggetto Database_accidenti a partire da un Database accidentato
+	 * esistente sul DB.
+	 * 
+	 * @param tesserasospetta
+	 */
 	public database_accidenti(int tesserasospetta) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -34,7 +45,12 @@ public class database_accidenti {
 		}
 	}
 
-	// costruttore nuova tessera accidentata
+	/**
+	 * Costruisce un oggetto Database_accidenti e lo aggiunge al DB.
+	 * 
+	 * @param n_carta
+	 * @param tipo_accidente
+	 */
 	public database_accidenti(String n_carta, String tipo_accidente) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -56,20 +72,38 @@ public class database_accidenti {
 //									GET/SET									//
 //////////////////////////////////////////////////////////////////////////////
 
-	// getters
+	/**
+	 * Il metodo ritorna il numero di carta di una carta accidentata.
+	 * 
+	 * @return numero di carta
+	 */
 	public int getN_carta() {
 		return n_carta;
 	}
 
+	/**
+	 * Il metodo ritorna il tipo di accidente di una carta accidentata.
+	 * 
+	 * @return tipo di accidente
+	 */
 	public String getTipo_accidente() {
 		return tipo_accidente;
 	}
 
-	// setters
+	/**
+	 * Il metodo imposta il numero di carta dell' oggetto.
+	 * 
+	 * @param n_carta
+	 */
 	public void setN_carta(int n_carta) {
 		this.n_carta = n_carta;
 	}
 
+	/**
+	 * Il metodo imposta il tipo di accidente dell' oggetto.
+	 * 
+	 * @param tipo_accidente
+	 */
 	public void setTipo_accidente(String tipo_accidente) {
 		this.tipo_accidente = tipo_accidente;
 	}
@@ -78,6 +112,12 @@ public class database_accidenti {
 //								FUNZIONI									//
 //////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Il metodo ritorna true se la carta è accidentata.
+	 * 
+	 * @param n_carta
+	 * @return true o false
+	 */
 	public boolean cartaaccidentata(int n_carta) {
 		database_accidenti db = new database_accidenti(n_carta);
 		if (db.tipo_accidente != null) {

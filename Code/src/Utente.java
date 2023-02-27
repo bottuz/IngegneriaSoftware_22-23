@@ -9,6 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * La classe Utente gestisce gli utenti.
+ * 
+ * @author botta
+ * @version 1.4.3
+ */
 public class Utente {
 	private int n_conto;
 	private int n_carta;
@@ -24,7 +30,11 @@ public class Utente {
 //								COSTRUTTORI									//
 //////////////////////////////////////////////////////////////////////////////
 
-	// costruttore esistente sul db
+	/**
+	 * Costruisce l'oggetto Utente dato un Utente presente nel DB.
+	 * 
+	 * @param n_carta
+	 */
 	public Utente(int n_carta) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -48,6 +58,12 @@ public class Utente {
 		}
 	}
 
+	/**
+	 * Costruisce l'oggeto Utente e lo aggiunge al DB.
+	 * 
+	 * @param n_conto
+	 * @param cognome
+	 */
 	public Utente(int n_conto, String cognome) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -72,7 +88,14 @@ public class Utente {
 		}
 	}
 
-	// costruttore nuovo utente
+	/**
+	 * Costruisce l'oggeto Utente e lo aggiunge al DB.
+	 * 
+	 * @param nome
+	 * @param cognome
+	 * @param annoNascita
+	 * @param residenza
+	 */
 	public Utente(String nome, String cognome, Date annoNascita, String residenza) {
 		this.nome = nome;
 		this.cognome = cognome;
@@ -106,74 +129,164 @@ public class Utente {
 //									GET/SET									//
 //////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Il metodo ritorna il numero di conto dell'oggetto Utente.
+	 * 
+	 * @return numero di conto
+	 */
 	public int getN_conto() {
 		return n_conto;
 	}
 
+	/**
+	 * Il metodo ritorna il numero di carta dell'oggetto Utente.
+	 * 
+	 * @return numero di carta
+	 */
 	public int getN_carta() {
 		return n_carta;
 	}
 
+	/**
+	 * Il metodo imposta il numero di conto dell'oggetto Utente.
+	 * 
+	 * @param n_conto
+	 */
 	public void setN_conto(int n_conto) {
 		this.n_conto = n_conto;
 	}
 
+	/**
+	 * Il metodo imposta il numero di carta dell'oggetto Utente.
+	 * 
+	 * @param n_carta
+	 */
 	public void setN_carta(int n_carta) {
 		this.n_carta = n_carta;
 	}
 
+	/**
+	 * Il metodo ritorna il nome dell'oggetto Utente.
+	 * 
+	 * @return nome
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * Il metodo imposta il nome dell'oggetto Utente.
+	 * 
+	 * @param nome
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+	/**
+	 * Il metodo ritorna il cognome dell'oggetto Utente.
+	 * 
+	 * @return cognome
+	 */
 	public String getCognome() {
 		return cognome;
 	}
 
+	/**
+	 * Il metodo imposta il cognome dell'oggetto Utente.
+	 * 
+	 * @param cognome
+	 */
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
 
+	/**
+	 * Il metodo ritorna l'anno di nascita dell'oggetto Utente.
+	 * 
+	 * @return anno di nascita
+	 */
 	public Date getAnnoNascita() {
 		return annoNascita;
 	}
 
+	/**
+	 * Il metodo imposta l'anno di nascita dell'oggetto Utente.
+	 * 
+	 * @param annoNascita
+	 */
 	public void setAnnoNascita(Date annoNascita) {
 		this.annoNascita = annoNascita;
 	}
 
+	/**
+	 * Il metodo ritorna la residenza dell'oggetto Utente.
+	 * 
+	 * @return residenza
+	 */
 	public String getResidenza() {
 		return residenza;
 	}
 
+	/**
+	 * Il metodo imposta la residenza dell'oggetto Utente.
+	 * 
+	 * @param residenza
+	 */
 	public void setResidenza(String residenza) {
 		this.residenza = residenza;
 	}
 
+	/**
+	 * Il metodo ritorna il PIN dell'oggetto Utente.
+	 * 
+	 * @return PIN
+	 */
 	public int getPIN() {
 		return PIN;
 	}
 
+	/**
+	 * Il metodo imposta il PIN dell'oggetto Utente.
+	 * 
+	 * @param pIN
+	 */
 	public void setPIN(int pIN) {
 		PIN = pIN;
 	}
 
+	/**
+	 * Il metodo ritorna l'oggetto Tessera_Magnetica dell'oggetto Utente.
+	 * 
+	 * @return tessera
+	 */
 	public Tessera_Magnetica getTessera() {
 		return tessera;
 	}
 
+	/**
+	 * Il metodo imposta l'oggetto Tessera_Magnetica dell'oggetto Utente.
+	 * 
+	 * @param tessera
+	 */
 	public void setTessera(Tessera_Magnetica tessera) {
 		this.tessera = tessera;
 	}
 
+	/**
+	 * Il metodo ritorna l'oggetto ContoCorrente dell'oggetto Utente.
+	 * 
+	 * @return contocorrente
+	 */
 	public Conto_Corrente getCc() {
 		return cc;
 	}
 
+	/**
+	 * Il metodo imposta l'oggetto ContoCorrente dell'oggetto Utente.
+	 * 
+	 * @param cc
+	 */
 	public void setCc(Conto_Corrente cc) {
 		this.cc = cc;
 	}
@@ -182,7 +295,14 @@ public class Utente {
 //								FUNZIONI									//
 //////////////////////////////////////////////////////////////////////////////
 
-	// serve a verificare l'esistenza di un utente dal COGNOME
+	/**
+	 * Il metodo serve a verificare l'esistenza di un utente dal COGNOME. Se lo
+	 * trova torna true.
+	 * 
+	 * @param n_conto
+	 * @param cognome
+	 * @return
+	 */
 	public boolean esisteUTENTE(int n_conto, String cognome) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -202,7 +322,11 @@ public class Utente {
 		return false;
 	}
 
-	// Serve a modificare il PIN utente {5 interi}
+	/**
+	 * Il metodo serve a modificare il PIN utente {5 interi}
+	 * 
+	 * @param PIN
+	 */
 	public void modificaPIN(String PIN) {
 		String url = "jdbc:mysql://localhost:3306/ATM";
 		String username = "admin";
@@ -225,6 +349,10 @@ public class Utente {
 		}
 	}
 
+	/**
+	 * Il metodo elimina l'oggetto utente e lo rimuove dal DB. A cascata rimuove
+	 * anche la Tessera_Magnetica e il ContoCorrente.
+	 */
 	public void cancellaUTENTE() {
 		String url = "jdbc:mysql://localhost:3306/ATM";
 		String username = "admin";
@@ -273,15 +401,15 @@ public class Utente {
 		}
 	}
 
-	public void richiede_ricevuta() {
-		// da implementare
-	}
-
-	public void ritira_ricevuta() {
-		// da implementare
-	}
-
-	public void ritira_carta() {
-		// da implementare
-	}
+//	public void richiede_ricevuta() {
+//		// da implementare
+//	}
+//
+//	public void ritira_ricevuta() {
+//		// da implementare
+//	}
+//
+//	public void ritira_carta() {
+//		// da implementare
+//	}
 }

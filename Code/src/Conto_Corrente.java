@@ -8,6 +8,12 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+/**
+ * La classe Conto_Corrente gestisce il contocorrente.
+ * 
+ * @author botta
+ * @version 1.4.3
+ */
 public class Conto_Corrente {
 	private int n_conto;
 	private Boolean importo_minimo;
@@ -17,7 +23,12 @@ public class Conto_Corrente {
 //								COSTRUTTORI									//
 //////////////////////////////////////////////////////////////////////////////	
 
-	// costruttore esistente sul db
+	/**
+	 * Costruisce l'oggetto Conto_Corrente a partire da un Contocorrente esistente
+	 * sul DB.
+	 * 
+	 * @param n_conto
+	 */
 	public Conto_Corrente(int n_conto) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -37,7 +48,9 @@ public class Conto_Corrente {
 		}
 	}
 
-	// costruttore nuovo conto corrente
+	/**
+	 * Costruisce l'oggetto ContoCorrente e lo aggiunge al DB.
+	 */
 	public Conto_Corrente() {
 		// genero N_conto per utente di 5 int
 		Random rand = new Random();
@@ -68,26 +81,56 @@ public class Conto_Corrente {
 //									GET/SET									//
 //////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Il metodo ritorna il numero di conto del contocorrente.
+	 * 
+	 * @return numero di conto
+	 */
 	public int getN_conto() {
 		return n_conto;
 	}
 
+	/**
+	 * Il metodo ritorna vero se c'è un importo minimo al contocorrente.
+	 * 
+	 * @return importo minimo (0/1)
+	 */
 	public Boolean getImporto_minimo() {
 		return importo_minimo;
 	}
 
+	/**
+	 * Il metodo ritorna il bilancio del contocorrente.
+	 * 
+	 * @return bilancio
+	 */
 	public Double getBilancio() {
 		return bilancio;
 	}
 
+	/**
+	 * Il metodo imposta il bilancio del contocorrente.
+	 * 
+	 * @param bilancio
+	 */
 	public void setBilancio(Double bilancio) {
 		this.bilancio = bilancio;
 	}
 
+	/**
+	 * Il metodo imposta il numero del conto del contocorrente.
+	 * 
+	 * @param n_conto
+	 */
 	public void setN_conto(int n_conto) {
 		this.n_conto = n_conto;
 	}
 
+	/**
+	 * Il metodo imposta l'importo minimo del contocorrente.
+	 * 
+	 * @param importo_minimo
+	 */
 	public void setImporto_minimo(Boolean importo_minimo) {
 		this.importo_minimo = importo_minimo;
 	}
@@ -96,6 +139,13 @@ public class Conto_Corrente {
 //								FUNZIONI									//
 //////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Il metodo serve a effettuare un prelievo da un contocorrente e aggiorna il
+	 * DB.
+	 * 
+	 * @param qtaprelievo
+	 * @param conto
+	 */
 	public void PrelevaContante(int qtaprelievo, int conto) {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -129,6 +179,12 @@ public class Conto_Corrente {
 		}
 	}
 
+	/**
+	 * Il metodo serve a effettuare un deposito a un contocorrente e aggiorna il DB.
+	 * 
+	 * @param qtadeposito
+	 * @param conto
+	 */
 	public void depositaContante(int qtadeposito, int conto) {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -161,7 +217,12 @@ public class Conto_Corrente {
 		}
 	}
 
-	// funzione per verificare se esiste un CC cercato dal n_conto
+	/**
+	 * Il metodo cerca se esiste un contocorrente dato un numero di conto.
+	 * 
+	 * @param n_conto
+	 * @return true o false
+	 */
 	public boolean esisteCC(int n_conto) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -180,7 +241,7 @@ public class Conto_Corrente {
 		return false;
 	}
 
-	public void scrivi_importo_transazione() {
-		// da implementare
-	}
+//	public void scrivi_importo_transazione() {
+//		// da implementare
+//	}
 }

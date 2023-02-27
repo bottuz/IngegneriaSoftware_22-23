@@ -10,19 +10,20 @@ La seguente documentazione comprende i documenti realizzati per la progettazione
 ### ANALISI REQUISITI
 Dopo un' attenta analisi dei requisiti abbiamo identificato:
 - [REQUISITI](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Analisi%20Requisiti/ANALISI%20DEI%20REQUISITI.docx)
-Abbiamo anche introdotto un glossario e descritto il progetto.
+- [GLOSSARIO] (https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Analisi%20Requisiti/GLOSSARIO.docx)
+- [DESCRIZIONE PROGETTO] (https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Analisi%20Requisiti/DESCRIZIONE%20PROGETTO.docx)
 
 ### UML
 Abbiamo realizzato i vari diagrammi grazie a STARUML.
 Sono nella cartella [Documentazione/Diagrammi](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/tree/main/Documentazione/Diagrammi)
-- [CASI D'USO]
-- [ATTIVITÀ]
-- [CLASSI]
-- [PACKAGE]
-- [SEQUENZE]
+- [CASI D'USO](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Diagrammi/Immagini%20diagrammi/Diagramma%20dei%20casi%20d'uso.jpg)
+- [ATTIVITÀ](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Diagrammi/Immagini%20diagrammi/Diagramma%20delle%20Attivit%C3%A0.jpg)
+- [CLASSI](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Diagrammi/Immagini%20diagrammi/Diagramma%20classi.jpg)
+- [PACKAGE](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Diagrammi/Immagini%20diagrammi/Diagramma%20Package.jpg)
+- [SEQUENZE](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Diagrammi/Immagini%20diagrammi/Diagramma%20delle%20sequenze.jpg)
 
 ### JavaDoc
-
+-[JAVADOC]()
 
 ### Librerie
 |Libreria|Descrizione|
