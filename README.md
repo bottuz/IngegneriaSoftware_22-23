@@ -8,8 +8,8 @@ Scopo del progetto è quello di implementare uno sportello [ATM](https://www.rep
 La seguente documentazione comprende i documenti realizzati per la progettazione del problema, verranno prima elencati i diagrammi delle classi in UML poi la documentazione del codice (javadoc).
 
 ### ANALISI REQUISITI
-Dopo un attenta analisi dei requisiti abbiamo identificato:
-- [REQUISITI](Documentazione/Analisi Requisiti)
+Dopo un' attenta analisi dei requisiti abbiamo identificato:
+- [REQUISITI](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/blob/main/Documentazione/Analisi%20Requisiti/ANALISI%20DEI%20REQUISITI.docx)
 Abbiamo anche introdotto un glossario e descritto il progetto.
 
 ### UML
