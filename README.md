@@ -26,25 +26,23 @@ Sono nella cartella [Documentazione/Diagrammi](https://github.com/MatteoCazzanig
 - [JAVADOC](https://github.com/MatteoCazzaniga/IngegneriaSoftware_22-23/tree/main/Code/doc)
 
 ### Librerie
-|Libreria|Descrizione|
-
-|java.awt.BorderLayout||
-|java.awt.EventQueue||
-|java.awt.GridLayout||
-|java.awt.event.ActionEvent||
-|java.awt.event.ActionListener||
-|java.sql.Connection||
-|ava.sql.DriverManager||
-|java.sql.ResultSet||
-|java.sql.SQLException||
-|java.sql.Statement||
-|javax.swing.JButton||
-|javax.swing.JFrame||
-|javax.swing.JLabel||
-|javax.swing.JOptionPane||
-|javax.swing.JPanel||
-|javax.swing.JPasswordField||
-|javax.swing.JTextField||
+- [java.awt.BorderLayout] è un layout manager che organizza i componenti all'interno di un contenitore in cinque aree: nord, sud, est, ovest e centro.
+- [java.awt.EventQueue] è una classe che gestisce gli eventi in un thread separato, garantendo che gli eventi vengano gestiti in modo sincrono e senza interferenze.
+- [java.awt.GridLayout] è un layout manager che organizza i componenti all'interno di un contenitore in una griglia di righe e colonne.
+- [java.awt.event.ActionEvent] è un evento generato quando viene eseguita un'azione, ad esempio quando un pulsante viene premuto.
+- [java.awt.event.ActionListener] è un'interfaccia che deve essere implementata da un oggetto che desidera ricevere e gestire eventi di azione.
+- [java.sql.Connection] rappresenta una connessione a un database relazionale e consente di eseguire operazioni di lettura e scrittura sui dati del database.
+- [java.sql.DriverManager] è una classe che gestisce la connessione ai driver del database e consente di ottenere una connessione a un database specifico.
+- [java.sql.ResultSet] rappresenta un insieme di risultati di una query SQL e consente di accedere ai dati restituiti dal database.
+- [java.sql.SQLException] è un'eccezione che viene generata quando si verifica un errore durante l'esecuzione di un'operazione sul database.
+- [java.sql.Statement] rappresenta un'istruzione SQL da eseguire sul database e consente di eseguire query e aggiornamenti sui dati.
+- [javax.swing.JButton] è un componente Swing che rappresenta un pulsante cliccabile che può essere utilizzato per avviare azioni.
+- [javax.swing.JFrame] è un contenitore Swing che rappresenta una finestra dell'applicazione.
+- [javax.swing.JLabel] è un componente Swing che visualizza un'etichetta di testo.
+- [javax.swing.JOptionPane] è una finestra di dialogo Swing che visualizza un messaggio e consente all'utente di selezionare una risposta.
+- [javax.swing.JPanel] è un contenitore Swing che può essere utilizzato per organizzare i componenti all'interno di un'interfaccia utente.
+- [javax.swing.JPasswordField] è un componente Swing che permette di inserire una password in modo sicuro.
+- [javax.swing.JTextField] è un componente Swing che permette di inserire testo.
 
 ### Jars
 I seguenti jar sono stati utilizzati per la consegna del progetto, permettono quindi il lancio dell'applicazione secondo le funzionalità descritte nell'introduzione..
