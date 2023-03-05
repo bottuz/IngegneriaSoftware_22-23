@@ -1,5 +1,5 @@
 # IngegneriaSoftware_22-23
-versione BETA 1.01
+versione BETA 1.4.3
 ![alt text](https://comunicatidelcredito.it/wp-content/uploads/2019/09/BANCA-D-ITALIA.png)
 
 Scopo del progetto è quello di implementare uno sportello [ATM](https://www.repstatic.it/content/nazionale/img/2021/10/22/144253807-30f920af-3df7-439e-95f7-9e55d5f1a461.jpg) attraverso un programma JAVA (orientato agli oggetti). Il risultato finale permette di interagirci grazie a un form grafico (GUI).
