@@ -52,8 +52,17 @@ Abbiamo realizzato un DATABASE in mysql per la gestione dei clienti, per il LOGI
 [DB](Code/db/ATM.sql).
 
 ## Funzionalità
-### Funzionalità Sviluppate
-### Funzionalità Aggiuntive
+- [Verifica Saldo]
+- [Prelievo]
+- [Deposito]
+- [Trasferimento]
+- [Chiusura Conto]
+- [Visualizza Storico Transazioni]
+
+### Funzionalità Future
+- [Autenticazione a 2 Fattori]
+- [Token Per Transazioni]
+- [...]
 
 
 ## Componenti del gruppo
