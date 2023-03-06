@@ -758,7 +758,7 @@
 									"font": "Arial;13;0",
 									"left": 140,
 									"top": 255,
-									"width": 52.53173828125,
+									"width": 52.6904296875,
 									"height": 25,
 									"text": "{else}"
 								},
@@ -1959,7 +1959,7 @@
 									"font": "Arial;13;0",
 									"left": 616,
 									"top": 624,
-									"width": 52.53173828125,
+									"width": 52.6904296875,
 									"height": 25,
 									"text": "{else}"
 								},
@@ -2935,7 +2935,7 @@
 											"top": 175,
 											"width": 170.87255859375,
 											"height": 13,
-											"text": "Conto Cottrnte"
+											"text": "Conto Corrente"
 										},
 										{
 											"_type": "LabelView",
@@ -3158,6 +3158,7 @@
 							"top": 168,
 							"width": 180.87255859375,
 							"height": 131,
+							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGFlfNNIVNBZMs="
 							},
@@ -6017,6 +6018,7 @@
 							"lineStyle": 1,
 							"points": "217:167;216:40;896:40;897:311",
 							"showVisibility": true,
+							"showProperty": false,
 							"nameLabel": {
 								"$ref": "AAAAAAGFlgcblH7Bnsg="
 							},
@@ -7690,7 +7692,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Conto Cottrnte",
+					"name": "Conto Corrente",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
